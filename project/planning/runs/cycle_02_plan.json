@@ -1,0 +1,20 @@
+{
+  "question_id": "q_compute_transition_refine",
+  "reason": "Refine the crossover region between the flat-runtime regime and the compute-scaling regime.",
+  "benchmark": "compute",
+  "benchmark_name": "compute_fma_like",
+  "n": 16777216,
+  "iterations": 20,
+  "parameter_space": {
+    "threads_per_block": [
+      256
+    ],
+    "inner_iters": [
+      96,
+      128,
+      160,
+      192,
+      224
+    ]
+  }
+}

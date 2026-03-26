@@ -3,7 +3,7 @@
   "n": 16777216,
   "threads_per_block": 256,
   "inner_iters": 4096,
-  "iterations": 20,
-  "avg_time_ms": 12.599,
+  "iterations": 50,
+  "avg_time_ms": 12.6796,
   "checksum_1024": 14794400000.0
 }

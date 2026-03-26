@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import time
+import uuid
+
 from knowledge.draft_pattern_claim import (
     load_sweep_file,
     build_inner_iters_summary,
@@ -9,7 +12,12 @@ from knowledge.store import add_claim
 from knowledge.validate import validate_claim
 
 
-def process_pattern_claim_from_sweep(filename: str) -> None:
+def process_pattern_claim_from_sweep(
+    filename: str,
+    benchmark: str = "compute_fma_like",
+    source: str = "sweep",
+    claim_type: str = "pattern",
+) -> None:
     sweep_rows = load_sweep_file(filename)
     summary_text = build_inner_iters_summary(sweep_rows)
     claim = generate_pattern_claim_from_sweep(summary_text)
@@ -18,6 +26,13 @@ def process_pattern_claim_from_sweep(filename: str) -> None:
         print("Pattern claim draft failed:")
         print(claim)
         return
+
+    # Enforce schema fields
+    claim["id"] = f"claim_{uuid.uuid4().hex[:8]}"
+    claim["timestamp"] = time.time()
+    claim.setdefault("type", claim_type)
+    claim.setdefault("benchmark", benchmark)
+    claim.setdefault("source", source)
 
     print("\n=== PATTERN CLAIM DRAFT ===")
     print(claim)

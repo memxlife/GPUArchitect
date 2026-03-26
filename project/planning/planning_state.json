@@ -1,0 +1,156 @@
+{
+  "version": "v0.6",
+  "defaults": {
+    "n": 16777216,
+    "iterations": 20
+  },
+  "active_questions": [
+    {
+      "id": "q_compute_problem_size_scaling",
+      "name": "Map compute-regime scaling versus problem size",
+      "status": "active",
+      "benchmark": "compute",
+      "benchmark_name": "compute_fma_like",
+      "type": "scaling_analysis",
+      "priority": 0.9,
+      "uncertainty": 0.72,
+      "readiness": 0.95,
+      "estimated_cost": 0.28,
+      "rationale": "Current knowledge establishes the inner_iters crossover and weak block-size sensitivity at one compute-heavy setting, but it does not show how runtime scales with total work size n. Measuring runtime across n in both the flat and compute-dominated regimes can reveal launch/overhead effects, throughput saturation, and whether the observed crossover depends on problem size. This is high-value architectural knowledge because it separates fixed launch costs from steady-state compute throughput using only available benchmarks.",
+      "parameter_space": {
+        "n": [
+          65536,
+          262144,
+          1048576,
+          4194304,
+          16777216,
+          33554432,
+          67108864
+        ],
+        "threads_per_block": [
+          128,
+          256
+        ],
+        "inner_iters": [
+          16,
+          64,
+          256,
+          1024,
+          4096
+        ],
+        "iterations": [
+          10,
+          20
+        ]
+      },
+      "activation": {},
+      "completion": {
+        "pattern_keywords_any": []
+      },
+      "next_if_resolved": [
+        "Test whether compute throughput saturates uniformly across block sizes at the largest n",
+        "Compare problem-size scaling of compute and memory benchmarks to isolate compute versus bandwidth limits"
+      ]
+    },
+    {
+      "id": "q_compute_iterations_stability",
+      "name": "Quantify timing stability and warmup effects",
+      "status": "active",
+      "benchmark": "compute",
+      "benchmark_name": "compute_fma_like",
+      "type": "stability_analysis",
+      "priority": 0.76,
+      "uncertainty": 0.81,
+      "readiness": 0.98,
+      "estimated_cost": 0.16,
+      "rationale": "Accepted knowledge currently relies on average times from repeated runs, but does not quantify variance, first-iteration overhead, or the number of repetitions needed for stable estimates. This is unresolved and valuable because launch overhead likely dominates the flat regime, making timing noise and warmup effects especially important near the regime boundary. The benchmark can already vary iterations, so this requires no new tools.",
+      "parameter_space": {
+        "n": [
+          16777216
+        ],
+        "threads_per_block": [
+          256
+        ],
+        "inner_iters": [
+          16,
+          64,
+          256,
+          1024,
+          4096
+        ],
+        "iterations": [
+          1,
+          2,
+          5,
+          10,
+          20,
+          50
+        ]
+      },
+      "activation": {},
+      "completion": {
+        "pattern_keywords_any": []
+      },
+      "next_if_resolved": [
+        "Use the stable iteration count for future boundary refinement and scaling experiments",
+        "Revisit crossover localization with reduced timing uncertainty"
+      ]
+    },
+    {
+      "id": "q_memory_baseline_characterization",
+      "name": "Establish memory benchmark scaling baseline",
+      "status": "active",
+      "benchmark": "memory",
+      "benchmark_name": "memory_stream_like",
+      "type": "baseline_characterization",
+      "priority": 0.93,
+      "uncertainty": 0.95,
+      "readiness": 0.62,
+      "estimated_cost": 0.35,
+      "rationale": "All accepted claims concern compute behavior; there is no corresponding memory-side baseline. A basic memory benchmark sweep is high-value because it enables architectural comparison between compute-limited and bandwidth-limited regimes using available benchmark families. The goal is to determine whether memory runtime scales primarily with problem size and how sensitive it is to block size, without requiring profiling tools.",
+      "parameter_space": {
+        "n": [
+          65536,
+          262144,
+          1048576,
+          4194304,
+          16777216,
+          33554432
+        ],
+        "threads_per_block": [
+          64,
+          128,
+          256,
+          512
+        ],
+        "inner_iters": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "iterations": [
+          10,
+          20
+        ]
+      },
+      "activation": {},
+      "completion": {
+        "pattern_keywords_any": []
+      },
+      "next_if_resolved": [
+        "Directly compare compute and memory scaling laws to classify likely architectural bottlenecks",
+        "Refine memory-side block sensitivity in the dominant regime"
+      ]
+    }
+  ],
+  "metadata": {
+    "num_claims": 8,
+    "num_builtin_agendas": 2,
+    "num_proposed_agendas": 3,
+    "num_total_agendas": 5,
+    "source_claims": "/home/memx/lishang/cuda/GPUArchitect/project/knowledge/claims.jsonl",
+    "source_builtin_agendas": "/home/memx/lishang/cuda/GPUArchitect/project/planning/agendas",
+    "source_proposed_agendas": "/home/memx/lishang/cuda/GPUArchitect/project/planning/normalized_proposed_agendas.json"
+  }
+}

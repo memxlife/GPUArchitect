@@ -3,6 +3,8 @@ from __future__ import annotations
 import argparse
 import subprocess
 import sys
+import time
+import uuid
 from pathlib import Path
 
 from model.model import PerformanceModel
@@ -75,14 +77,31 @@ def maybe_run_llm_analysis(program_output: str, enable_llm: bool) -> str | None:
         return f"LLM analysis failed: {exc}"
 
 
+def build_observation(parsed: dict) -> dict:
+    return {
+        "id": f"obs_{uuid.uuid4().hex[:8]}",
+        "timestamp": time.time(),
+        "benchmark": parsed.get("benchmark"),
+        "parameters": {
+            "n": parsed.get("n"),
+            "threads_per_block": parsed.get("threads_per_block"),
+            "inner_iters": parsed.get("inner_iters"),
+            "iterations": parsed.get("iterations"),
+        },
+        "metrics": {
+            "avg_time_ms": parsed.get("avg_time_ms"),
+            "checksum_1024": parsed.get("checksum_1024"),
+        },
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--benchmark", choices=["memory", "compute"], default="memory")
     parser.add_argument("--profile", action="store_true")
     parser.add_argument("--llm-analysis", action="store_true")
-    parser.add_argument("--generate-claim", action="store_true")  # ← ADD THIS LINE
+    parser.add_argument("--generate-claim", action="store_true")
     parser.add_argument("program_args", nargs="*")
-
     args = parser.parse_args()
 
     full_output = run_runner(args.benchmark, args.profile, args.program_args)
@@ -90,29 +109,14 @@ def main() -> None:
 
     program_output = extract_program_output(full_output)
     parsed = parse_key_value_output(program_output)
-    # -------------------------------
-    # store observation
-    # -------------------------------
+
+    # Store structured observation
     from knowledge.store import add_observation
 
-    obs = {
-        "benchmark": parsed.get("benchmark"),
-        "parameters": {
-            "n": parsed.get("n"),
-            "threads_per_block": parsed.get("threads_per_block"),
-            "inner_iters": parsed.get("inner_iters"),
-        },
-        "metrics": {
-            "avg_time_ms": parsed.get("avg_time_ms"),
-        }
-    }
-
+    obs = build_observation(parsed)
     add_observation(obs)
 
-    # -------------------------------
-    # Existing model logic
-    # -------------------------------
-
+    # Update simple persistent model state
     model = PerformanceModel()
     model.load()
     model.update(parsed)
@@ -127,14 +131,15 @@ def main() -> None:
         print("\n=== LLM ANALYSIS ===")
         print(llm_analysis)
 
-    # -------------------------------
-    # NEW: claim pipeline
-    # -------------------------------
+    # Optional claim generation pipeline
     if args.generate_claim:
         from knowledge.pipeline import process_claim_from_observations
-        process_claim_from_observations(program_output)
-
-
+        process_claim_from_observations(
+            program_output,
+            benchmark=parsed.get("benchmark", "unknown"),
+            source="single_run",
+            claim_type="observation",
+        )
 
 if __name__ == "__main__":
     main()
