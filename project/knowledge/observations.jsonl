@@ -1,0 +1,16 @@
+{
+  "id": "exp_001",
+  "benchmark": "compute_fma_like",
+  "parameters": {
+    "n": 16777216,
+    "threads_per_block": 256,
+    "inner_iters": 64
+  },
+  "metrics": {
+    "avg_time_ms": 0.338566
+  },
+  "notes": "flat runtime regime"
+}
+{"benchmark": "compute_fma_like", "parameters": {"n": 16777216, "threads_per_block": 256, "inner_iters": 4096}, "metrics": {"avg_time_ms": 12.5966}}
+{"benchmark": "compute_fma_like", "parameters": {"n": 16777216, "threads_per_block": 256, "inner_iters": 4096}, "metrics": {"avg_time_ms": 12.6048}}
+{"benchmark": "compute_fma_like", "parameters": {"n": 16777216, "threads_per_block": 256, "inner_iters": 4096}, "metrics": {"avg_time_ms": 12.599}}
