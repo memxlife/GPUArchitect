@@ -332,3 +332,17 @@ Its state is defined by:
 Its objective is:
 
 > maximize expected information gain about the GPU architecture while preserving interpretability, respecting cost, and following a causally valid learning sequence.
+
+### Current Implementation Status
+
+The planner is now split into four layers:
+
+- agenda proposer: proposes new agendas from current knowledge
+- agenda normalizer: converts proposed agendas into planner-compatible schema
+- state builder: merges built-in and normalized agendas into active planning state
+- planner engine: selects the highest-priority active question and emits an execution plan
+
+This separation ensures that:
+- algorithmic planning logic remains stable
+- exploration specifics live in agenda files
+- new learning goals can be proposed automatically without changing planner code
