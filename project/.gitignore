@@ -1,0 +1,6 @@
+echo "__pycache__/" >> .gitignore
+echo "*.pyc" >> .gitignore
+echo ".DS_Store" >> .gitignore
+echo "*.swp" >> .gitignore
+echo "set_local.sh" >> .gitignore
+echo ".env" >> .gitignore

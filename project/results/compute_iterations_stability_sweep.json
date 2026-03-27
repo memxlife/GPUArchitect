@@ -6,10 +6,10 @@
     "threads_per_block": 256,
     "inner_iters": 16,
     "iterations": 1,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=16\niterations=1\navg_time_ms=0.340768\nchecksum_1024=2176.09\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 16, 'iterations': 1, 'avg_time_ms': 0.340768, 'checksum_1024': 2176.09}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=16\niterations=1\navg_time_ms=0.366176\nchecksum_1024=2176.09\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 16, 'iterations': 1, 'avg_time_ms': 0.366176, 'checksum_1024': 2176.09}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.340768,
+    "avg_time_ms": 0.366176,
     "checksum_1024": 2176.09
   },
   {
@@ -19,10 +19,10 @@
     "threads_per_block": 256,
     "inner_iters": 16,
     "iterations": 2,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=16\niterations=2\navg_time_ms=0.338992\nchecksum_1024=2176.09\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 16, 'iterations': 2, 'avg_time_ms': 0.338992, 'checksum_1024': 2176.09}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=16\niterations=2\navg_time_ms=0.339456\nchecksum_1024=2176.09\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 16, 'iterations': 2, 'avg_time_ms': 0.339456, 'checksum_1024': 2176.09}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.338992,
+    "avg_time_ms": 0.339456,
     "checksum_1024": 2176.09
   },
   {
@@ -32,10 +32,10 @@
     "threads_per_block": 256,
     "inner_iters": 16,
     "iterations": 5,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=16\niterations=5\navg_time_ms=0.341389\nchecksum_1024=2176.09\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 16, 'iterations': 5, 'avg_time_ms': 0.341389, 'checksum_1024': 2176.09}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=16\niterations=5\navg_time_ms=0.338605\nchecksum_1024=2176.09\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 16, 'iterations': 5, 'avg_time_ms': 0.338605, 'checksum_1024': 2176.09}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.341389,
+    "avg_time_ms": 0.338605,
     "checksum_1024": 2176.09
   },
   {
@@ -45,10 +45,10 @@
     "threads_per_block": 256,
     "inner_iters": 16,
     "iterations": 10,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=16\niterations=10\navg_time_ms=0.339632\nchecksum_1024=2176.09\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 16, 'iterations': 10, 'avg_time_ms': 0.339632, 'checksum_1024': 2176.09}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=16\niterations=10\navg_time_ms=0.339197\nchecksum_1024=2176.09\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 16, 'iterations': 10, 'avg_time_ms': 0.339197, 'checksum_1024': 2176.09}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.339632,
+    "avg_time_ms": 0.339197,
     "checksum_1024": 2176.09
   },
   {
@@ -58,10 +58,10 @@
     "threads_per_block": 256,
     "inner_iters": 16,
     "iterations": 20,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=16\niterations=20\navg_time_ms=0.33965\nchecksum_1024=2176.09\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 16, 'iterations': 20, 'avg_time_ms': 0.33965, 'checksum_1024': 2176.09}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=16\niterations=20\navg_time_ms=0.340304\nchecksum_1024=2176.09\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 16, 'iterations': 20, 'avg_time_ms': 0.340304, 'checksum_1024': 2176.09}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.33965,
+    "avg_time_ms": 0.340304,
     "checksum_1024": 2176.09
   },
   {
@@ -71,10 +71,10 @@
     "threads_per_block": 256,
     "inner_iters": 16,
     "iterations": 50,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=16\niterations=50\navg_time_ms=0.338754\nchecksum_1024=2176.09\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 16, 'iterations': 50, 'avg_time_ms': 0.338754, 'checksum_1024': 2176.09}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=16\niterations=50\navg_time_ms=0.348495\nchecksum_1024=2176.09\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 16, 'iterations': 50, 'avg_time_ms': 0.348495, 'checksum_1024': 2176.09}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.338754,
+    "avg_time_ms": 0.348495,
     "checksum_1024": 2176.09
   },
   {
@@ -84,10 +84,10 @@
     "threads_per_block": 256,
     "inner_iters": 64,
     "iterations": 1,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=64\niterations=1\navg_time_ms=0.341504\nchecksum_1024=2186.42\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 64, 'iterations': 1, 'avg_time_ms': 0.341504, 'checksum_1024': 2186.42}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=64\niterations=1\navg_time_ms=0.340992\nchecksum_1024=2186.42\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 64, 'iterations': 1, 'avg_time_ms': 0.340992, 'checksum_1024': 2186.42}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.341504,
+    "avg_time_ms": 0.340992,
     "checksum_1024": 2186.42
   },
   {
@@ -97,10 +97,10 @@
     "threads_per_block": 256,
     "inner_iters": 64,
     "iterations": 2,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=64\niterations=2\navg_time_ms=0.340512\nchecksum_1024=2186.42\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 64, 'iterations': 2, 'avg_time_ms': 0.340512, 'checksum_1024': 2186.42}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=64\niterations=2\navg_time_ms=0.339168\nchecksum_1024=2186.42\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 64, 'iterations': 2, 'avg_time_ms': 0.339168, 'checksum_1024': 2186.42}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.340512,
+    "avg_time_ms": 0.339168,
     "checksum_1024": 2186.42
   },
   {
@@ -110,10 +110,10 @@
     "threads_per_block": 256,
     "inner_iters": 64,
     "iterations": 5,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=64\niterations=5\navg_time_ms=0.339648\nchecksum_1024=2186.42\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 64, 'iterations': 5, 'avg_time_ms': 0.339648, 'checksum_1024': 2186.42}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=64\niterations=5\navg_time_ms=0.341382\nchecksum_1024=2186.42\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 64, 'iterations': 5, 'avg_time_ms': 0.341382, 'checksum_1024': 2186.42}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.339648,
+    "avg_time_ms": 0.341382,
     "checksum_1024": 2186.42
   },
   {
@@ -123,10 +123,10 @@
     "threads_per_block": 256,
     "inner_iters": 64,
     "iterations": 10,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=64\niterations=10\navg_time_ms=0.341069\nchecksum_1024=2186.42\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 64, 'iterations': 10, 'avg_time_ms': 0.341069, 'checksum_1024': 2186.42}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=64\niterations=10\navg_time_ms=0.342902\nchecksum_1024=2186.42\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 64, 'iterations': 10, 'avg_time_ms': 0.342902, 'checksum_1024': 2186.42}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.341069,
+    "avg_time_ms": 0.342902,
     "checksum_1024": 2186.42
   },
   {
@@ -136,10 +136,10 @@
     "threads_per_block": 256,
     "inner_iters": 64,
     "iterations": 20,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=64\niterations=20\navg_time_ms=0.357746\nchecksum_1024=2186.42\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 64, 'iterations': 20, 'avg_time_ms': 0.357746, 'checksum_1024': 2186.42}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=64\niterations=20\navg_time_ms=0.339366\nchecksum_1024=2186.42\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 64, 'iterations': 20, 'avg_time_ms': 0.339366, 'checksum_1024': 2186.42}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.357746,
+    "avg_time_ms": 0.339366,
     "checksum_1024": 2186.42
   },
   {
@@ -149,10 +149,10 @@
     "threads_per_block": 256,
     "inner_iters": 64,
     "iterations": 50,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=64\niterations=50\navg_time_ms=0.340941\nchecksum_1024=2186.42\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 64, 'iterations': 50, 'avg_time_ms': 0.340941, 'checksum_1024': 2186.42}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=64\niterations=50\navg_time_ms=0.347776\nchecksum_1024=2186.42\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 64, 'iterations': 50, 'avg_time_ms': 0.347776, 'checksum_1024': 2186.42}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.340941,
+    "avg_time_ms": 0.347776,
     "checksum_1024": 2186.42
   },
   {
@@ -162,10 +162,10 @@
     "threads_per_block": 256,
     "inner_iters": 256,
     "iterations": 1,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=256\niterations=1\navg_time_ms=0.852704\nchecksum_1024=2282.62\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 256, 'iterations': 1, 'avg_time_ms': 0.852704, 'checksum_1024': 2282.62}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=256\niterations=1\navg_time_ms=0.85088\nchecksum_1024=2282.62\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 256, 'iterations': 1, 'avg_time_ms': 0.85088, 'checksum_1024': 2282.62}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.852704,
+    "avg_time_ms": 0.85088,
     "checksum_1024": 2282.62
   },
   {
@@ -175,10 +175,10 @@
     "threads_per_block": 256,
     "inner_iters": 256,
     "iterations": 2,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=256\niterations=2\navg_time_ms=0.857312\nchecksum_1024=2282.62\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 256, 'iterations': 2, 'avg_time_ms': 0.857312, 'checksum_1024': 2282.62}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=256\niterations=2\navg_time_ms=0.856512\nchecksum_1024=2282.62\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 256, 'iterations': 2, 'avg_time_ms': 0.856512, 'checksum_1024': 2282.62}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.857312,
+    "avg_time_ms": 0.856512,
     "checksum_1024": 2282.62
   },
   {
@@ -188,10 +188,10 @@
     "threads_per_block": 256,
     "inner_iters": 256,
     "iterations": 5,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=256\niterations=5\navg_time_ms=0.848781\nchecksum_1024=2282.62\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 256, 'iterations': 5, 'avg_time_ms': 0.848781, 'checksum_1024': 2282.62}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=256\niterations=5\navg_time_ms=0.85095\nchecksum_1024=2282.62\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 256, 'iterations': 5, 'avg_time_ms': 0.85095, 'checksum_1024': 2282.62}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.848781,
+    "avg_time_ms": 0.85095,
     "checksum_1024": 2282.62
   },
   {
@@ -201,10 +201,10 @@
     "threads_per_block": 256,
     "inner_iters": 256,
     "iterations": 10,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=256\niterations=10\navg_time_ms=0.848262\nchecksum_1024=2282.62\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 256, 'iterations': 10, 'avg_time_ms': 0.848262, 'checksum_1024': 2282.62}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=256\niterations=10\navg_time_ms=0.848768\nchecksum_1024=2282.62\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 256, 'iterations': 10, 'avg_time_ms': 0.848768, 'checksum_1024': 2282.62}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.848262,
+    "avg_time_ms": 0.848768,
     "checksum_1024": 2282.62
   },
   {
@@ -214,10 +214,10 @@
     "threads_per_block": 256,
     "inner_iters": 256,
     "iterations": 20,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=256\niterations=20\navg_time_ms=0.850024\nchecksum_1024=2282.62\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 256, 'iterations': 20, 'avg_time_ms': 0.850024, 'checksum_1024': 2282.62}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=256\niterations=20\navg_time_ms=0.854782\nchecksum_1024=2282.62\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 256, 'iterations': 20, 'avg_time_ms': 0.854782, 'checksum_1024': 2282.62}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.850024,
+    "avg_time_ms": 0.854782,
     "checksum_1024": 2282.62
   },
   {
@@ -227,10 +227,10 @@
     "threads_per_block": 256,
     "inner_iters": 256,
     "iterations": 50,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=256\niterations=50\navg_time_ms=0.854182\nchecksum_1024=2282.62\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 256, 'iterations': 50, 'avg_time_ms': 0.854182, 'checksum_1024': 2282.62}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=256\niterations=50\navg_time_ms=0.855034\nchecksum_1024=2282.62\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 256, 'iterations': 50, 'avg_time_ms': 0.855034, 'checksum_1024': 2282.62}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 0.854182,
+    "avg_time_ms": 0.855034,
     "checksum_1024": 2282.62
   },
   {
@@ -240,10 +240,10 @@
     "threads_per_block": 256,
     "inner_iters": 1024,
     "iterations": 1,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=1024\niterations=1\navg_time_ms=3.16573\nchecksum_1024=4504.89\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 1024, 'iterations': 1, 'avg_time_ms': 3.16573, 'checksum_1024': 4504.89}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=1024\niterations=1\navg_time_ms=3.18086\nchecksum_1024=4504.89\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 1024, 'iterations': 1, 'avg_time_ms': 3.18086, 'checksum_1024': 4504.89}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 3.16573,
+    "avg_time_ms": 3.18086,
     "checksum_1024": 4504.89
   },
   {
@@ -253,10 +253,10 @@
     "threads_per_block": 256,
     "inner_iters": 1024,
     "iterations": 2,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=1024\niterations=2\navg_time_ms=3.19261\nchecksum_1024=4504.89\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 1024, 'iterations': 2, 'avg_time_ms': 3.19261, 'checksum_1024': 4504.89}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=1024\niterations=2\navg_time_ms=3.17123\nchecksum_1024=4504.89\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 1024, 'iterations': 2, 'avg_time_ms': 3.17123, 'checksum_1024': 4504.89}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 3.19261,
+    "avg_time_ms": 3.17123,
     "checksum_1024": 4504.89
   },
   {
@@ -266,10 +266,10 @@
     "threads_per_block": 256,
     "inner_iters": 1024,
     "iterations": 5,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=1024\niterations=5\navg_time_ms=3.18868\nchecksum_1024=4504.89\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 1024, 'iterations': 5, 'avg_time_ms': 3.18868, 'checksum_1024': 4504.89}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=1024\niterations=5\navg_time_ms=3.18785\nchecksum_1024=4504.89\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 1024, 'iterations': 5, 'avg_time_ms': 3.18785, 'checksum_1024': 4504.89}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 3.18868,
+    "avg_time_ms": 3.18785,
     "checksum_1024": 4504.89
   },
   {
@@ -279,10 +279,10 @@
     "threads_per_block": 256,
     "inner_iters": 1024,
     "iterations": 10,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=1024\niterations=10\navg_time_ms=3.18741\nchecksum_1024=4504.89\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 1024, 'iterations': 10, 'avg_time_ms': 3.18741, 'checksum_1024': 4504.89}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=1024\niterations=10\navg_time_ms=3.18502\nchecksum_1024=4504.89\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 1024, 'iterations': 10, 'avg_time_ms': 3.18502, 'checksum_1024': 4504.89}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 3.18741,
+    "avg_time_ms": 3.18502,
     "checksum_1024": 4504.89
   },
   {
@@ -292,10 +292,10 @@
     "threads_per_block": 256,
     "inner_iters": 1024,
     "iterations": 20,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=1024\niterations=20\navg_time_ms=3.19072\nchecksum_1024=4504.89\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 1024, 'iterations': 20, 'avg_time_ms': 3.19072, 'checksum_1024': 4504.89}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=1024\niterations=20\navg_time_ms=3.19689\nchecksum_1024=4504.89\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 1024, 'iterations': 20, 'avg_time_ms': 3.19689, 'checksum_1024': 4504.89}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 3.19072,
+    "avg_time_ms": 3.19689,
     "checksum_1024": 4504.89
   },
   {
@@ -305,10 +305,10 @@
     "threads_per_block": 256,
     "inner_iters": 1024,
     "iterations": 50,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=1024\niterations=50\navg_time_ms=3.20388\nchecksum_1024=4504.89\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 1024, 'iterations': 50, 'avg_time_ms': 3.20388, 'checksum_1024': 4504.89}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=1024\niterations=50\navg_time_ms=3.20383\nchecksum_1024=4504.89\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 1024, 'iterations': 50, 'avg_time_ms': 3.20383, 'checksum_1024': 4504.89}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 3.20388,
+    "avg_time_ms": 3.20383,
     "checksum_1024": 4504.89
   },
   {
@@ -318,10 +318,10 @@
     "threads_per_block": 256,
     "inner_iters": 4096,
     "iterations": 1,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=4096\niterations=1\navg_time_ms=12.6209\nchecksum_1024=1.47944e+10\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 4096, 'iterations': 1, 'avg_time_ms': 12.6209, 'checksum_1024': 14794400000.0}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=4096\niterations=1\navg_time_ms=12.6164\nchecksum_1024=1.47944e+10\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 4096, 'iterations': 1, 'avg_time_ms': 12.6164, 'checksum_1024': 14794400000.0}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 12.6209,
+    "avg_time_ms": 12.6164,
     "checksum_1024": 14794400000.0
   },
   {
@@ -331,10 +331,10 @@
     "threads_per_block": 256,
     "inner_iters": 4096,
     "iterations": 2,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=4096\niterations=2\navg_time_ms=12.603\nchecksum_1024=1.47944e+10\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 4096, 'iterations': 2, 'avg_time_ms': 12.603, 'checksum_1024': 14794400000.0}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=4096\niterations=2\navg_time_ms=12.6182\nchecksum_1024=1.47944e+10\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 4096, 'iterations': 2, 'avg_time_ms': 12.6182, 'checksum_1024': 14794400000.0}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 12.603,
+    "avg_time_ms": 12.6182,
     "checksum_1024": 14794400000.0
   },
   {
@@ -344,10 +344,10 @@
     "threads_per_block": 256,
     "inner_iters": 4096,
     "iterations": 5,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=4096\niterations=5\navg_time_ms=12.6068\nchecksum_1024=1.47944e+10\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 4096, 'iterations': 5, 'avg_time_ms': 12.6068, 'checksum_1024': 14794400000.0}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=4096\niterations=5\navg_time_ms=12.6043\nchecksum_1024=1.47944e+10\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 4096, 'iterations': 5, 'avg_time_ms': 12.6043, 'checksum_1024': 14794400000.0}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 12.6068,
+    "avg_time_ms": 12.6043,
     "checksum_1024": 14794400000.0
   },
   {
@@ -357,10 +357,10 @@
     "threads_per_block": 256,
     "inner_iters": 4096,
     "iterations": 10,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=4096\niterations=10\navg_time_ms=12.6048\nchecksum_1024=1.47944e+10\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 4096, 'iterations': 10, 'avg_time_ms': 12.6048, 'checksum_1024': 14794400000.0}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=4096\niterations=10\navg_time_ms=12.6053\nchecksum_1024=1.47944e+10\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 4096, 'iterations': 10, 'avg_time_ms': 12.6053, 'checksum_1024': 14794400000.0}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 12.6048,
+    "avg_time_ms": 12.6053,
     "checksum_1024": 14794400000.0
   },
   {
@@ -370,10 +370,10 @@
     "threads_per_block": 256,
     "inner_iters": 4096,
     "iterations": 20,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=4096\niterations=20\navg_time_ms=12.6803\nchecksum_1024=1.47944e+10\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 4096, 'iterations': 20, 'avg_time_ms': 12.6803, 'checksum_1024': 14794400000.0}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=4096\niterations=20\navg_time_ms=12.6558\nchecksum_1024=1.47944e+10\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 4096, 'iterations': 20, 'avg_time_ms': 12.6558, 'checksum_1024': 14794400000.0}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 12.6803,
+    "avg_time_ms": 12.6558,
     "checksum_1024": 14794400000.0
   },
   {
@@ -383,10 +383,10 @@
     "threads_per_block": 256,
     "inner_iters": 4096,
     "iterations": 50,
-    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=4096\niterations=50\navg_time_ms=12.6796\nchecksum_1024=1.47944e+10\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 4096, 'iterations': 50, 'avg_time_ms': 12.6796, 'checksum_1024': 14794400000.0}\nSaved to results/latest_result.json\n",
+    "stdout": "=== PROGRAM OUTPUT ===\nbenchmark=compute_fma_like\nn=16777216\nthreads_per_block=256\ninner_iters=4096\niterations=50\navg_time_ms=12.6539\nchecksum_1024=1.47944e+10\n\n=== PARSED RESULT ===\n{'benchmark': 'compute_fma_like', 'n': 16777216, 'threads_per_block': 256, 'inner_iters': 4096, 'iterations': 50, 'avg_time_ms': 12.6539, 'checksum_1024': 14794400000.0}\nSaved to results/latest_result.json\n",
     "returncode": 0,
     "": "== PARSED RESULT ===",
-    "avg_time_ms": 12.6796,
+    "avg_time_ms": 12.6539,
     "checksum_1024": 14794400000.0
   }
 ]

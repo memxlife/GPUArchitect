@@ -7,8 +7,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from planning.planner import select_next_experiment
-
+from core.planner import select_next_experiment
 
 ROOT = Path(__file__).resolve().parents[1]
 

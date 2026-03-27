@@ -1,1 +1,13 @@
+__pycache__/
+*.pyc
+.DS_Store
+*.swp
+set_local.sh
+.env
 project/set_local.sh
+.DS_Store
+*.swp
+__pycache__/
+*.pyc
+project/set_local.sh
+.env

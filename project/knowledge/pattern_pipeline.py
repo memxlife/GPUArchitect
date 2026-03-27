@@ -27,12 +27,12 @@ def process_pattern_claim_from_sweep(
         print(claim)
         return
 
-    # Enforce schema fields
+    # Enforce canonical schema fields
     claim["id"] = f"claim_{uuid.uuid4().hex[:8]}"
     claim["timestamp"] = time.time()
-    claim.setdefault("type", claim_type)
-    claim.setdefault("benchmark", benchmark)
-    claim.setdefault("source", source)
+    claim["type"] = claim_type
+    claim["benchmark"] = benchmark
+    claim["source"] = source
 
     print("\n=== PATTERN CLAIM DRAFT ===")
     print(claim)

@@ -1,0 +1,28 @@
+{
+  "name": "compute_fma_like",
+  "family": "compute",
+  "entry_benchmark_arg": "compute",
+  "parameters": ["n", "threads_per_block", "inner_iters", "iterations"],
+  "defaults": {
+    "n": 16777216,
+    "threads_per_block": 256,
+    "inner_iters": 1024,
+    "iterations": 20
+  },
+  "safe_ranges": {
+    "threads_per_block": [64, 128, 256, 512],
+    "inner_iters": [1, 4, 16, 64, 96, 128, 160, 192, 224, 256, 1024, 4096]
+  },
+  "known_issues": [
+    "overflow at very large inner_iters"
+  ],
+  "expected_outputs": [
+    "benchmark",
+    "n",
+    "threads_per_block",
+    "inner_iters",
+    "iterations",
+    "avg_time_ms",
+    "checksum_1024"
+  ]
+}

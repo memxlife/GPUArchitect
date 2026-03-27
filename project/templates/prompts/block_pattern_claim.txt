@@ -1,0 +1,21 @@
+Given the following block-sensitivity sweep results:
+
+{summary_text}
+
+Generate exactly one JSON object with these fields:
+- description: string
+- evidence: array
+- cause: string
+- mechanism: string
+- implication: string
+- uncertainty: string ("low", "medium", "high")
+- type: string ("pattern")
+- benchmark: string
+- source: string ("block_sweep")
+
+Requirements:
+1. Output valid JSON only.
+2. Do not include markdown fences.
+3. Ground the claim strictly in the provided sweep data.
+4. If runtime varies only weakly across threads_per_block, say that the kernel has low block-size sensitivity.
+5. Keep evidence concise and specific.

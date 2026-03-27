@@ -1,9 +1,9 @@
 {
   "benchmark": "compute_fma_like",
-  "n": 16777216,
-  "threads_per_block": 256,
-  "inner_iters": 4096,
-  "iterations": 50,
-  "avg_time_ms": 12.6796,
-  "checksum_1024": 14794400000.0
+  "n": 1048576,
+  "threads_per_block": 512,
+  "inner_iters": 1,
+  "iterations": 20,
+  "avg_time_ms": 0.0090208,
+  "checksum_1024": 2173.92
 }

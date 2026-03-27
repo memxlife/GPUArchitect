@@ -1,0 +1,147 @@
+{
+  "version": "v0.6",
+  "defaults": {
+    "n": 16777216,
+    "iterations": 20
+  },
+  "active_questions": [
+    {
+      "id": "q_compute_problem_size_scaling",
+      "name": "Map compute-regime scaling versus problem size",
+      "status": "active",
+      "benchmark": "compute",
+      "benchmark_name": "compute_fma_like",
+      "type": "scaling_analysis",
+      "priority": 0.94,
+      "uncertainty": 0.76,
+      "readiness": 0.93,
+      "estimated_cost": 0.32,
+      "rationale": "Current knowledge establishes a transition from launch/overhead-dominated behavior to compute-dominated behavior and shows weak sensitivity to block size at one compute-heavy setting, but it does not quantify how runtime scales with total work across problem sizes. Sweeping n at fixed low and high inner_iters can reveal whether the flat regime is dominated by fixed launch overhead, whether the compute regime is linear in total elements, and whether any saturation or throughput cliff appears at very small or very large grids. This is high-value architectural knowledge because it separates constant overhead effects from per-element execution cost using only currently available compute benchmarks.",
+      "parameter_space": {
+        "benchmark_name": "compute_fma_like",
+        "n": [
+          65536,
+          262144,
+          1048576,
+          4194304,
+          16777216,
+          67108864
+        ],
+        "threads_per_block": [
+          256
+        ],
+        "inner_iters": [
+          16,
+          64,
+          256,
+          1024,
+          4096
+        ],
+        "iterations": [
+          20
+        ]
+      },
+      "activation": {},
+      "completion": {
+        "pattern_keywords_any": []
+      },
+      "next_if_resolved": [
+        "q_memory_problem_size_scaling",
+        "q_compute_overhead_model"
+      ]
+    },
+    {
+      "id": "q_compute_overflow_boundary",
+      "name": "Locate numerical overflow onset in compute accumulation",
+      "status": "active",
+      "benchmark": "compute",
+      "benchmark_name": "compute_fma_like",
+      "type": "numerical_boundary_refinement",
+      "priority": 0.81,
+      "uncertainty": 0.68,
+      "readiness": 0.95,
+      "estimated_cost": 0.18,
+      "rationale": "Accepted claims note rapid checksum growth and eventual overflow to infinity at very large inner_iters, but the overflow boundary is not localized. Refining the onset of overflow is valuable because it distinguishes numerical limits from architectural performance effects and prevents future experiments from misattributing invalid outputs to performance anomalies. This can be done with the existing benchmark by sweeping inner_iters more densely in the high range and recording when checksum transitions from finite to infinite.",
+      "parameter_space": {
+        "benchmark_name": "compute_fma_like",
+        "n": [
+          16777216
+        ],
+        "threads_per_block": [
+          256
+        ],
+        "inner_iters": [
+          4096,
+          6144,
+          8192,
+          12288,
+          16384,
+          24576,
+          32768,
+          49152,
+          65536
+        ],
+        "iterations": [
+          20
+        ]
+      },
+      "activation": {},
+      "completion": {
+        "pattern_keywords_any": []
+      },
+      "next_if_resolved": [
+        "q_compute_numeric_stability_guardband"
+      ]
+    },
+    {
+      "id": "q_memory_block_sensitivity",
+      "name": "Measure memory benchmark sensitivity to block size",
+      "status": "active",
+      "benchmark": "memory",
+      "benchmark_name": "memory_bandwidth_like",
+      "type": "sensitivity_analysis",
+      "priority": 0.79,
+      "uncertainty": 0.91,
+      "readiness": 0.62,
+      "estimated_cost": 0.27,
+      "rationale": "Current accepted knowledge is heavily compute-centric; there is no accepted architectural characterization for the memory family. A first high-value step is to test whether memory-oriented performance is sensitive to threads_per_block, which often exposes occupancy, coalescing, and latency-hiding behavior not visible in the compute benchmark where runtime was flat across 64-512 threads at one setting. This fills a major knowledge gap while staying within available benchmark families and tools.",
+      "parameter_space": {
+        "benchmark_name": "memory_bandwidth_like",
+        "n": [
+          16777216
+        ],
+        "threads_per_block": [
+          64,
+          128,
+          256,
+          512
+        ],
+        "inner_iters": [
+          1,
+          4,
+          16
+        ],
+        "iterations": [
+          20
+        ]
+      },
+      "activation": {},
+      "completion": {
+        "pattern_keywords_any": []
+      },
+      "next_if_resolved": [
+        "q_memory_problem_size_scaling",
+        "q_memory_intensity_sweep"
+      ]
+    }
+  ],
+  "metadata": {
+    "num_claims": 8,
+    "num_builtin_agendas": 2,
+    "num_proposed_agendas": 3,
+    "num_total_agendas": 5,
+    "source_claims": "/home/memx/lishang/cuda/GPUArchitect/project/data/knowledge/claims.jsonl",
+    "source_builtin_agendas": "/home/memx/lishang/cuda/GPUArchitect/project/specs/agendas",
+    "source_proposed_agendas": "/home/memx/lishang/cuda/GPUArchitect/project/data/planning/normalized_proposed_agendas.json"
+  }
+}

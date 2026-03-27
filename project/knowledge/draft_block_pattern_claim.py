@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from llm.openai_client import call_analysis
+from core.prompt_loader import load_prompt
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,29 +37,8 @@ def build_block_sweep_summary(rows: list[dict]) -> str:
 
 
 def generate_block_pattern_claim_from_summary(summary_text: str) -> dict:
-    prompt = f"""
-Given the following block-sensitivity sweep results:
-
-{summary_text}
-
-Generate exactly one JSON object with these fields:
-- description: string
-- evidence: array
-- cause: string
-- mechanism: string
-- implication: string
-- uncertainty: string ("low", "medium", "high")
-- type: string ("pattern")
-- benchmark: string
-- source: string ("block_sweep")
-
-Requirements:
-1. Output valid JSON only.
-2. Do not include markdown fences.
-3. Ground the claim strictly in the provided sweep data.
-4. This is a pattern-level claim, not a single-run claim.
-5. Keep evidence concise and specific.
-"""
+    template = load_prompt("block_pattern_claim.txt")
+    prompt = template.format(summary_text=summary_text)
 
     response = call_analysis(prompt)
 

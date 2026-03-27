@@ -8,7 +8,7 @@ from knowledge.dedup import is_duplicate_claim
 
 
 ROOT = Path(__file__).resolve().parents[1]
-KB_DIR = ROOT / "knowledge"
+KB_DIR = ROOT / "data" / "knowledge"
 
 OBS_FILE = KB_DIR / "observations.jsonl"
 CLAIM_FILE = KB_DIR / "claims.jsonl"

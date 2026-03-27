@@ -1,5 +1,34 @@
 from __future__ import annotations
 
+import os
+from openai import OpenAI
+
+_client: OpenAI | None = None
+
+
+def get_client() -> OpenAI:
+    global _client
+
+    if _client is None:
+        api_key = os.getenv("OPENAI_API_KEY")
+        if not api_key:
+            raise RuntimeError("OPENAI_API_KEY is not set")
+
+        _client = OpenAI(api_key=api_key)
+
+    return _client
+
+
+def call_analysis(prompt: str) -> str:
+    client = get_client()
+
+    response = client.responses.create(
+        model="gpt-5.4",
+        input=prompt,
+    )
+
+    return response.output_text
+
 from openai import OpenAI
 
 
