@@ -6,6 +6,44 @@
   },
   "active_questions": [
     {
+      "id": "q_compute_overflow_boundary",
+      "name": "Refine overflow boundary",
+      "status": "active",
+      "benchmark": "compute",
+      "benchmark_name": "compute_fma_like",
+      "type": "boundary_refinement",
+      "priority": 0.9,
+      "uncertainty": 0.8,
+      "readiness": 1.0,
+      "estimated_cost": 1.0,
+      "rationale": "Refine numerical overflow boundary in compute kernel.",
+      "parameter_space": {
+        "threads_per_block": [
+          256
+        ],
+        "inner_iters": [
+          4096,
+          6144,
+          8192,
+          12288,
+          16384,
+          24576,
+          32768,
+          49152,
+          65536
+        ]
+      },
+      "activation": {},
+      "completion": {
+        "pattern_keywords_any": [
+          "smallest inner_iters where checksum becomes infinite",
+          "overflow boundary",
+          "finite to infinite transition"
+        ]
+      },
+      "next_if_resolved": []
+    },
+    {
       "id": "q_compute_problem_size_scaling",
       "name": "Map compute-regime scaling versus problem size",
       "status": "active",
@@ -51,49 +89,6 @@
       ]
     },
     {
-      "id": "q_compute_overflow_boundary",
-      "name": "Locate numerical overflow onset in compute accumulation",
-      "status": "active",
-      "benchmark": "compute",
-      "benchmark_name": "compute_fma_like",
-      "type": "numerical_boundary_refinement",
-      "priority": 0.81,
-      "uncertainty": 0.68,
-      "readiness": 0.95,
-      "estimated_cost": 0.18,
-      "rationale": "Accepted claims note rapid checksum growth and eventual overflow to infinity at very large inner_iters, but the overflow boundary is not localized. Refining the onset of overflow is valuable because it distinguishes numerical limits from architectural performance effects and prevents future experiments from misattributing invalid outputs to performance anomalies. This can be done with the existing benchmark by sweeping inner_iters more densely in the high range and recording when checksum transitions from finite to infinite.",
-      "parameter_space": {
-        "benchmark_name": "compute_fma_like",
-        "n": [
-          16777216
-        ],
-        "threads_per_block": [
-          256
-        ],
-        "inner_iters": [
-          4096,
-          6144,
-          8192,
-          12288,
-          16384,
-          24576,
-          32768,
-          49152,
-          65536
-        ],
-        "iterations": [
-          20
-        ]
-      },
-      "activation": {},
-      "completion": {
-        "pattern_keywords_any": []
-      },
-      "next_if_resolved": [
-        "q_compute_numeric_stability_guardband"
-      ]
-    },
-    {
       "id": "q_memory_block_sensitivity",
       "name": "Measure memory benchmark sensitivity to block size",
       "status": "active",
@@ -136,8 +131,8 @@
     }
   ],
   "metadata": {
-    "num_claims": 8,
-    "num_builtin_agendas": 2,
+    "num_claims": 12,
+    "num_builtin_agendas": 3,
     "num_proposed_agendas": 3,
     "num_total_agendas": 5,
     "source_claims": "/home/memx/lishang/cuda/GPUArchitect/project/data/knowledge/claims.jsonl",

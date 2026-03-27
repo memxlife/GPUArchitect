@@ -1,0 +1,21 @@
+Given the following overflow-boundary sweep results:
+
+{summary_text}
+
+Generate exactly one JSON object with:
+
+- description
+- evidence
+- cause
+- mechanism
+- implication
+- uncertainty ("low", "medium", "high")
+- type: "pattern"
+- benchmark
+- source: "overflow_sweep"
+
+Requirements:
+1. Output valid JSON only.
+2. Identify the smallest inner_iters where checksum becomes infinite.
+3. Distinguish finite → large → overflow regions.
+4. Explain whether runtime behavior changes across overflow.

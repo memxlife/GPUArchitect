@@ -1,0 +1,21 @@
+Given the following iterations-stability sweep results:
+
+{summary_text}
+
+Generate exactly one JSON object with these fields:
+- description: string
+- evidence: array
+- cause: string
+- mechanism: string
+- implication: string
+- uncertainty: string ("low", "medium", "high")
+- type: string ("pattern")
+- benchmark: string
+- source: string ("iterations_sweep")
+
+Requirements:
+1. Output valid JSON only.
+2. Do not include markdown fences.
+3. Focus on how runtime varies with iteration count.
+4. If runtime is stable across iterations, explicitly state that.
+5. Identify whether small iteration counts show instability or noise.

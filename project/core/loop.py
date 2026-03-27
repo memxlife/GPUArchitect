@@ -49,27 +49,30 @@ def run_plan_file(plan_file: Path) -> None:
     if result.returncode != 0:
         raise RuntimeError(f"run_next failed:\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}")
 
+from knowledge.generic_pattern_pipeline import process_pattern_claim
+
 
 def maybe_generate_pattern_claim(plan: dict[str, Any]) -> None:
-    question_id = plan.get("question_id")
     benchmark_name = plan.get("benchmark_name", "")
+    claim_template = plan.get("claim_template")
 
+    # Only handle compute for now
     if benchmark_name != "compute_fma_like":
         return
 
-    if question_id == "q_compute_transition_refine":
-        cmd = [sys.executable, "-m", "knowledge.run_pattern_claim"]
-    elif question_id == "q_compute_block_sensitivity":
-        cmd = [sys.executable, "-m", "knowledge.run_block_pattern_claim"]
-    else:
+    # If no template specified, do nothing
+    if not claim_template:
         return
 
-    result = run_cmd(cmd)
-    print(result.stdout, end="")
-    if result.returncode != 0:
-        raise RuntimeError(
-            f"pattern claim generation failed:\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}"
+    try:
+        process_pattern_claim(
+            filename="latest_sweep.json",
+            prompt_template=claim_template,
+            benchmark=benchmark_name,
+            source=plan.get("type", "pattern"),
         )
+    except Exception as e:
+        raise RuntimeError(f"pattern claim generation failed: {e}")
 
 
 def main() -> None:

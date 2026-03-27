@@ -1,26 +1,24 @@
 {
-  "question_id": "agenda_compute_blocksize_x_intensity_interaction",
-  "reason": "The accepted block sweep shows runtime is flat from 64 to 512 threads per block only at inner_iters=1024, which suggests block size may not matter in one compute-heavy regime. It is still unknown whether this invariance holds in the low-inner_iters regime, near the transition region, or at larger problem sizes. Measuring threads_per_block across multiple inner_iters can reveal occupancy, scheduling, or latency-hiding effects that are invisible at a single arithmetic intensity.",
+  "question_id": "q_compute_problem_size_scaling",
+  "reason": "Current knowledge establishes a transition from launch/overhead-dominated behavior to compute-dominated behavior and shows weak sensitivity to block size at one compute-heavy setting, but it does not quantify how runtime scales with total work across problem sizes. Sweeping n at fixed low and high inner_iters can reveal whether the flat regime is dominated by fixed launch overhead, whether the compute regime is linear in total elements, and whether any saturation or throughput cliff appears at very small or very large grids. This is high-value architectural knowledge because it separates constant overhead effects from per-element execution cost using only currently available compute benchmarks.",
   "benchmark": "compute",
   "benchmark_name": "compute_fma_like",
   "n": 16777216,
   "iterations": 20,
   "parameter_space": {
+    "benchmark_name": "compute_fma_like",
     "n": [
+      65536,
+      262144,
       1048576,
-      16777216
+      4194304,
+      16777216,
+      67108864
     ],
     "threads_per_block": [
-      32,
-      64,
-      128,
-      256,
-      512,
-      1024
+      256
     ],
     "inner_iters": [
-      1,
-      4,
       16,
       64,
       256,
