@@ -1,0 +1,11 @@
+{
+  "world_model_id": "wm_gpu_001",
+  "gpu_identity": {},
+  "claims": [],
+  "open_questions": [
+    "What is the first measurable performance behavior of this GPU?"
+  ],
+  "frontier": ["initial"],
+  "schema_refs": {},
+  "version": "0.1"
+}
