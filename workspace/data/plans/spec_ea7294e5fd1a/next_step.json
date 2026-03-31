@@ -1,0 +1,49 @@
+{
+  "backend": "codex_sdk",
+  "proposal": {
+    "approval_state": "proposed",
+    "bottleneck": "The workflow now has a matched stride-control pair at one 2048 KB working-set size, but it still cannot test whether the bandwidth gap is primarily a capacity/locality transition versus a stride-only effect because no second working-set point has been measured under the same hostile stride.",
+    "continue_recommended": true,
+    "created_at": "2026-03-31T13:49:37.102210+00:00",
+    "expected_gain": "A single smaller-working-set rerun at the same 128-byte stride would add an orthogonal comparison axis and make the locality interpretation more defensible without changing the benchmark family, controls, or append-only workflow.",
+    "id": "workflow_25883e1d6b35",
+    "proposal": "Run one rollbackable follow-up spec in the existing `cuda_memory_hierarchy_probe` handler with identical launch parameters and deterministic controls, keeping `stride_bytes=128` but reducing `working_set_kb` to a cache-plausible size such as 256 KB. Analyze it only as a paired capacity test against `spec_3626106571cf` and the accepted 4-byte-stride control `spec_ea7294e5fd1a`: if bandwidth rises materially versus the 2048 KB, 128-byte-stride point, record a narrower claim that performance is sensitive to working-set size under hostile stride; if it does not, keep the current conclusion limited to stride-conditioned observations. Preserve all stages and append-only history, and do not promote any cache-level attribution from a single added point.",
+    "proposed_profile_updates": [
+      {
+        "context_sections": [
+          "question",
+          "spec",
+          "claim",
+          "verification"
+        ],
+        "instruction_note": "When proposing a next spec after a successful matched control, require the agent to name the next comparison axis explicitly (`stride`, `working_set`, or `launch_shape`) and cite the prior spec ids it will hold constant.",
+        "reason": "This makes later human review of experimental intent easier and reduces under-specified follow-up runs.",
+        "role": "spec_generator",
+        "sandbox_mode": "read-only",
+        "web_search_enabled": false
+      },
+      {
+        "context_sections": [
+          "spec",
+          "claim",
+          "verification"
+        ],
+        "instruction_note": "For memory-hierarchy claims, allow cache-level language only after at least one controlled working-set comparison is present; otherwise label results as locality- or capacity-sensitive observations only.",
+        "reason": "This preserves rigor while keeping curation aligned with the evidence actually collected.",
+        "role": "analyzer",
+        "sandbox_mode": "read-only",
+        "web_search_enabled": false
+      }
+    ],
+    "risk": "A 256 KB point may still be ambiguous if it does not clearly separate cache-resident from non-resident behavior, so the added run could yield weak evidence without fully resolving the memory-level interpretation.",
+    "rollback_condition": "If the added 128-byte-stride working-set comparison cannot be executed deterministically within the 120-second budget, produces incompatible metadata, or shows no stable signal on verification, retain the current accepted pair of single-condition claims and do not elevate the locality interpretation beyond the existing matched-stride comparison.",
+    "stop_reason": null,
+    "target_workflow_version": "workflow_v1"
+  },
+  "thread_id": "019d4427-e0c9-7d63-9a1b-40efac743000",
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 11292,
+    "output_tokens": 997
+  }
+}

@@ -58,10 +58,42 @@ gpuarchitect init
 gpuarchitect run-round --question "How does the synthetic memory probe react to larger working sets?"
 ```
 
+如果要在同一个 workspace 中沿着上一轮继续，而不重新给问题：
+
+```bash
+gpuarchitect run-round
+```
+
+如果继续时还想附带新的人工指令：
+
+```bash
+gpuarchitect run-round --directive "继续上一轮，但优先尝试更大的 working set。"
+```
+
+## 跑多轮
+
+固定轮数：
+
+```bash
+gpuarchitect run-loop --question "Explore memory hierarchy effects with strided global memory access" --rounds 3
+```
+
+自动多轮：
+
+```bash
+gpuarchitect run-loop --auto
+```
+
+`--auto` 会持续运行，直到 workflow 建议停止，或者你手动 `Ctrl-C` 打断。中断后可以在同一个 workspace 里再次执行 `gpuarchitect run-loop --auto` 或 `gpuarchitect run-round` 继续。
+
 ## 常用命令
 
 - `gpuarchitect init`
 - `gpuarchitect run-round --question "..."`
+- `gpuarchitect run-round`
+- `gpuarchitect run-round --directive "..."`
+- `gpuarchitect run-loop --question "..." --rounds 3`
+- `gpuarchitect run-loop --auto`
 - `gpuarchitect verify-claim --claim-id <id>`
 - `gpuarchitect rebuild-site`
 - `gpuarchitect status`
@@ -89,6 +121,8 @@ agent 的输入结构不只存在于代码中，也存在于 `workflow/active.ya
 
 这些提案只会进入历史记录，不会自动修改 workflow。
 
+Planner 现在还会读取 continuation context，因此连续执行 `run-round` 或 `run-loop` 时，可以基于上一轮结果继续推进，而不用修改代码。
+
 ## 知识库与历史记录的区别
 
 这两者不是同一个东西。
@@ -111,14 +145,29 @@ agent 的输入结构不只存在于代码中，也存在于 `workflow/active.ya
 
 知识库可以重建，历史记录不应被覆盖。
 
+## 多轮控制
+
+系统使用：
+
+- `data/control/session_state.json` 保存可变的 session 控制状态
+- `data/records/operator_directives.jsonl` 追加记录人工指令
+
+因此支持：
+
+- `run-round`：跑一轮
+- `run-round` 不带 `--question`：基于已有上下文继续一轮
+- `run-loop --rounds N`：跑固定 N 轮
+- `run-loop --auto`：持续运行，由 workflow 决定何时停，或由人手动中断
+
+Planner 的联网搜索已经重新打开，并测试通过。
+
 ## 架构文档
 
 见 [docs/architecture.md](docs/architecture.md)。
 
 ## 当前限制
 
-- 当前 benchmark 仍是 synthetic probe，不是真实 CUDA/profiler 实验
-- 还没有长期运行调度器
+- 目前只有一个真实 CUDA family：`cuda_memory_hierarchy_probe`
 - 还没有 workflow proposal 的审批与合并执行器
 - 还没有 kernel backtesting loop
 
@@ -129,7 +178,7 @@ agent 的输入结构不只存在于代码中，也存在于 `workflow/active.ya
 - 验证研究 workflow 是否闭环
 - 验证 append-only 记录与知识导出是否分离
 - 验证 Codex agent 角色输入结构是否可配置
-- 为后续接入真实 CUDA experiment family 打基础
+- 直接执行真实 CUDA memory hierarchy 单轮任务
 
 当前版本还不适合直接产出可信的 GPU 架构研究结论。
 

@@ -1,0 +1,1 @@
+{"benchmark":"cuda_memory_hierarchy_probe","working_set_kb":1024,"stride_bytes":128,"iterations":20000,"threads_per_block":128,"blocks":80,"repeat_count":3,"avg_elapsed_ms":5.069195,"estimated_bandwidth_gb_s":161.603575,"checksum":130719612928}

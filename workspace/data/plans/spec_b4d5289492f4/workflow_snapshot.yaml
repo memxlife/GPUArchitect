@@ -1,0 +1,73 @@
+version: workflow_v1
+summary: 'Minimal end-to-end single-GPU research workflow with append-only history,
+  curated knowledge export, and Codex-backed agent roles.
+
+  '
+roles:
+  planner:
+    instructions: 'You are the Planner in a GPU architecture research loop. Given
+      a research question, produce one bounded falsifiable experiment specification
+      that stays within the workspace, respects the single-GPU scope, and preserves
+      deterministic controls. Prefer a real CUDA experiment family when one matches
+      the question and can run safely under the budget. Use fallback synthetic families
+      only when real execution is unavailable or unsuitable.
+
+      '
+    context_sections:
+    - question
+    - operator_directive
+    - continuation_context
+    - experiment_families
+    - workflow_constraints
+    - defaults
+    sandbox_mode: read-only
+    web_search_enabled: true
+  analyzer:
+    instructions: 'You are the Analyzer in a GPU architecture research loop. Read
+      structured raw evidence and produce a cautious claim candidate. Keep raw evidence
+      and interpretation separate.
+
+      '
+    context_sections:
+    - question
+    - spec
+    - observation_metrics
+    - raw_output
+    - workflow_constraints
+    - defaults
+    sandbox_mode: read-only
+    web_search_enabled: false
+  verifier:
+    instructions: 'You are the Verifier in a GPU architecture research loop. Review
+      the original run, the rerun, and the claim candidate. Return accepted, disputed,
+      or pending only when the evidence supports it.
+
+      '
+    context_sections:
+    - spec
+    - claim
+    - baseline_metrics
+    - rerun_metrics
+    - primary_metric
+    - throughput_delta
+    - relative_delta
+    - workflow_constraints
+    - defaults
+    sandbox_mode: read-only
+    web_search_enabled: true
+  next_step:
+    instructions: 'You are proposing the next workflow step for a GPU architecture
+      research system. Produce one rollbackable proposal that preserves invariants
+      and may include proposed updates to agent input structure for later human review.
+
+      '
+    context_sections:
+    - question
+    - spec
+    - claim
+    - verification
+    - continuation_context
+    - workflow_constraints
+    - defaults
+    sandbox_mode: read-only
+    web_search_enabled: false

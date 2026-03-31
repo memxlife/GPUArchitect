@@ -1,0 +1,11 @@
+{
+  "last_claim_id": "claim_838cc3215edd",
+  "last_question_id": "question_49203bf41a22",
+  "last_workflow_proposal_id": "workflow_5de6f31e6aac",
+  "mode": "finite",
+  "rounds_completed": 5,
+  "session_id": "session_e51423fe6093",
+  "status": "idle",
+  "target_rounds": 5,
+  "updated_at": "2026-03-31T13:53:01.765857+00:00"
+}

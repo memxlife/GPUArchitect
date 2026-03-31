@@ -1,0 +1,30 @@
+{
+  "backend": "codex_sdk",
+  "output": {
+    "benchmark_type": "cuda_memory_hierarchy_probe",
+    "blocks": 80,
+    "executor_ref": "python_module:gpu_research_agent.benchmarks.cuda_memory_hierarchy_probe",
+    "expected_outputs": [
+      "stdout.json",
+      "compile.log",
+      "analysis.json"
+    ],
+    "hypothesis": "With launch shape and iterations held fixed, the 1024 KB, 128-byte-stride probe will measure estimated bandwidth between the accepted 256 KB, 128-byte-stride result and the accepted 2048 KB, 128-byte-stride result; if it falls outside that interval, the apparent working-set effect on the hostile-stride path is not a simple monotone trend under this probe.",
+    "iterations": 20000,
+    "rationale": "The 2x2 corner matrix is already complete and verified. A single midpoint measurement on the 128-byte-stride axis is the smallest new real-CUDA experiment that tests whether the observed working-set sensitivity is an endpoint artifact or a directional trend, while preserving the same deterministic controls, single-GPU scope, and round budget.",
+    "repeat_count": 3,
+    "scope": "single_gpu_microbenchmark",
+    "seed": 7,
+    "selected_question": "At fixed 128-byte stride, does an intermediate 1024 KB working set produce bandwidth between the verified 256 KB and 2048 KB hostile-stride endpoints under the same CUDA memory probe parameters?",
+    "sleep_ms": 10,
+    "stride_bytes": 128,
+    "threads_per_block": 128,
+    "working_set_kb": 1024
+  },
+  "thread_id": "019d4429-dd62-7600-9dc9-75dd90ff9843",
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 16672,
+    "output_tokens": 1484
+  }
+}

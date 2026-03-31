@@ -1,0 +1,30 @@
+{
+  "backend": "codex_sdk",
+  "output": {
+    "benchmark_type": "cuda_memory_hierarchy_probe",
+    "blocks": 80,
+    "executor_ref": "python_module:gpu_research_agent.benchmarks.cuda_memory_hierarchy_probe",
+    "expected_outputs": [
+      "stdout.json",
+      "compile.log",
+      "analysis.json"
+    ],
+    "hypothesis": "With launch shape, iterations, and controls held fixed, the missing 256 KB, 4-byte-stride cell will measure higher estimated bandwidth than the accepted 256 KB, 128-byte-stride result; if it does not, the hostile-stride penalty does not persist clearly at the reduced working set under this probe.",
+    "iterations": 20000,
+    "rationale": "Complete the minimal 2x2 matrix for axes `working_set_kb` in {2048, 256} and `stride_bytes` in {128, 4} using the real CUDA probe. Already measured cells are spec_3626106571cf (2048 KB, 128 B), spec_ea7294e5fd1a (2048 KB, 4 B), and spec_d89a9f30c9b4 (256 KB, 128 B). This spec fills the single missing matched-control cell (256 KB, 4 B) while preserving single-GPU scope, deterministic controls, benchmark family, and the 120-second round budget.",
+    "repeat_count": 3,
+    "scope": "single_gpu_microbenchmark",
+    "seed": 7,
+    "selected_question": "Does the missing matched-control cell at 256 KB working set and 4-byte stride show substantially higher effective bandwidth than the 256 KB, 128-byte hostile-stride case under the same CUDA memory probe launch parameters?",
+    "sleep_ms": 10,
+    "stride_bytes": 4,
+    "threads_per_block": 128,
+    "working_set_kb": 256
+  },
+  "thread_id": "019d4428-e0fb-7c80-83dc-278e9f77bbd0",
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 16160,
+    "output_tokens": 571
+  }
+}

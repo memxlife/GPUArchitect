@@ -1,0 +1,26 @@
+{
+  "benchmark_type": "cuda_memory_hierarchy_probe",
+  "budget_seconds": 120,
+  "created_at": "2026-03-31T13:49:46.885783+00:00",
+  "deterministic_controls": {
+    "repeat_count": 3,
+    "seed": 7
+  },
+  "executor_ref": "python_module:gpu_research_agent.benchmarks.cuda_memory_hierarchy_probe",
+  "expected_outputs": [
+    "stdout.json",
+    "compile.log",
+    "analysis.json"
+  ],
+  "hypothesis": "Holding launch shape, iterations, and stride constant at the accepted hostile-stride setting, reducing the working set from 2048 KB to 256 KB will increase estimated bandwidth; if bandwidth does not increase materially versus the prior 2048 KB, 128-byte-stride result, the capacity/locality explanation is weakened.",
+  "id": "spec_d89a9f30c9b4",
+  "parameters": {
+    "blocks": 80,
+    "iterations": 20000,
+    "sleep_ms": 10,
+    "stride_bytes": 128,
+    "threads_per_block": 128,
+    "working_set_kb": 256
+  },
+  "question_id": "question_9b94c5b7f49f"
+}

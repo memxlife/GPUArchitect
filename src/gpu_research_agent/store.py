@@ -17,6 +17,7 @@ class AppendOnlyStore:
     def init_workspace(self) -> None:
         for path in [
             self.layout.data_dir,
+            self.layout.control_dir,
             self.layout.plans_dir,
             self.layout.runs_dir,
             self.layout.records_dir,

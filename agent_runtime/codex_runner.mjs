@@ -37,24 +37,33 @@ async function main() {
     JSON.stringify(request.payload, null, 2),
   ].join("\n");
 
-  const streamed = await thread.runStreamed([{ type: "text", text: inputText }], {
-    outputSchema: request.output_schema,
-  });
-
-  const events = [];
+  let events = [];
   let finalResponse = null;
   let usage = null;
-  for await (const event of streamed.events) {
-    events.push(event);
-    if (
-      (event.type === "item.completed" || event.type === "item.updated") &&
-      event.item?.type === "agent_message" &&
-      typeof event.item.text === "string"
-    ) {
-      finalResponse = event.item.text;
-    }
-    if (event.type === "turn.completed") {
-      usage = event.usage;
+
+  if (request.stream_mode === "turn") {
+    const turn = await thread.run([{ type: "text", text: inputText }], {
+      outputSchema: request.output_schema,
+    });
+    finalResponse = turn.finalResponse;
+    usage = turn.usage;
+  } else {
+    const streamed = await thread.runStreamed([{ type: "text", text: inputText }], {
+      outputSchema: request.output_schema,
+    });
+
+    for await (const event of streamed.events) {
+      events.push(event);
+      if (
+        (event.type === "item.completed" || event.type === "item.updated") &&
+        event.item?.type === "agent_message" &&
+        typeof event.item.text === "string"
+      ) {
+        finalResponse = event.item.text;
+      }
+      if (event.type === "turn.completed") {
+        usage = event.usage;
+      }
     }
   }
 

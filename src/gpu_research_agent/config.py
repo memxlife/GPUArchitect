@@ -33,6 +33,10 @@ class WorkspaceLayout:
         return self.data_dir / "records"
 
     @property
+    def control_dir(self) -> Path:
+        return self.data_dir / "control"
+
+    @property
     def knowledge_dir(self) -> Path:
         return self.root / "knowledge"
 

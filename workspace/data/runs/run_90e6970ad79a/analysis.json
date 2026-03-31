@@ -1,0 +1,49 @@
+{
+  "agent_backend": "codex_sdk",
+  "claim": {
+    "confidence": "medium",
+    "counterevidence": [
+      "The payload does not include the paired 2048 KB, 128-byte-stride result, so this run alone cannot establish whether bandwidth improved versus the prior measurement.",
+      "This is a single benchmark run with 3 timed launches under one launch configuration, so run-to-run variance and device-state effects are not characterized.",
+      "Estimated bandwidth is inferred from elapsed time for this probe and does not by itself identify which cache or memory level supplied the data."
+    ],
+    "created_at": "2026-03-31T13:49:11.689616+00:00",
+    "id": "claim_2ba9ae0d5738",
+    "observation_id": "observation_a870f09547be",
+    "provenance_paths": [
+      "/home/memx/dy/gpu-vibe/workspace/data/runs/run_90e6970ad79a/stdout.json",
+      "/home/memx/dy/gpu-vibe/workspace/data/runs/run_90e6970ad79a/spec.json"
+    ],
+    "question_id": "question_0e8d9c2e1f2a",
+    "spec_id": "spec_ea7294e5fd1a",
+    "statement": "For a 2048 KB working set and 4-byte stride under the specified CUDA probe configuration, the measurement yielded an estimated 334.954323 GB/s averaged over 3 timed launches.",
+    "status": "candidate",
+    "support_summary": "Raw evidence: the bounded `cuda_memory_hierarchy_probe` completed successfully with working_set_kb=2048, stride_bytes=4, blocks=80, threads_per_block=128, iterations=20000, avg_elapsed_ms=2.445707, checksum=10589503488, and estimated_bandwidth_gb_s=334.954323. Interpretation: this provides a cache-friendly control-point measurement under matched launch parameters, but by itself it only supports the observed bandwidth for this configuration, not a causal locality conclusion."
+  },
+  "observation": {
+    "created_at": "2026-03-31T13:49:03.883035+00:00",
+    "evidence_paths": [
+      "/home/memx/dy/gpu-vibe/workspace/data/runs/run_90e6970ad79a/stdout.json",
+      "/home/memx/dy/gpu-vibe/workspace/data/runs/run_90e6970ad79a/spec.json"
+    ],
+    "id": "observation_a870f09547be",
+    "metrics": {
+      "avg_elapsed_ms": 2.445707,
+      "blocks": 80,
+      "estimated_bandwidth_gb_s": 334.954323,
+      "repeat_count": 3,
+      "stride_bytes": 4,
+      "threads_per_block": 128,
+      "working_set_kb": 2048
+    },
+    "parser_version": "v1",
+    "run_id": "run_90e6970ad79a",
+    "spec_id": "spec_ea7294e5fd1a"
+  },
+  "thread_id": "019d4427-ac6c-7d80-a595-c2dbb825cc36",
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 8452,
+    "output_tokens": 336
+  }
+}

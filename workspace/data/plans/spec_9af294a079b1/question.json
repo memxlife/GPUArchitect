@@ -1,0 +1,8 @@
+{
+  "created_at": "2026-03-31T13:51:58.539645+00:00",
+  "id": "question_49203bf41a22",
+  "priority": 1,
+  "rationale": "The 2x2 corner matrix is already complete and verified. A single midpoint measurement on the 128-byte-stride axis is the smallest new real-CUDA experiment that tests whether the observed working-set sensitivity is an endpoint artifact or a directional trend, while preserving the same deterministic controls, single-GPU scope, and round budget.",
+  "scope": "single_gpu_microbenchmark",
+  "topic": "At fixed 128-byte stride, does an intermediate 1024 KB working set produce bandwidth between the verified 256 KB and 2048 KB hostile-stride endpoints under the same CUDA memory probe parameters?"
+}

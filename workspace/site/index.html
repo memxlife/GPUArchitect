@@ -59,13 +59,13 @@ a {
       <section class="panel">
         <h2>Status</h2>
         <ul>
-          <li>Total runs: 2</li>
-          <li>Total questions: 1</li>
-          <li>Total experiment specs: 1</li>
-          <li>Accepted claims: 1</li>
+          <li>Total runs: 10</li>
+          <li>Total questions: 5</li>
+          <li>Total experiment specs: 5</li>
+          <li>Accepted claims: 5</li>
           <li>Pending claims: 0</li>
           <li>Disputed claims: 0</li>
-          <li>Verification records: 1</li>
+          <li>Verification records: 5</li>
         </ul>
       </section>
       <section class="panel">
@@ -89,16 +89,25 @@ a {
       </section>
       <section class="panel">
         <h2>Recent Runs</h2>
-        <ul><li><strong>run_85f8ce5fbf54</strong> exit=0 elapsed=0.4353s</li>
-<li><strong>run_2c15ef60eceb</strong> exit=0 elapsed=1.4356s</li></ul>
+        <ul><li><strong>run_ba8a708af155</strong> exit=0 elapsed=0.4348s</li>
+<li><strong>run_5513b3fe2df4</strong> exit=0 elapsed=0.4296s</li>
+<li><strong>run_35a1f854228e</strong> exit=0 elapsed=0.4258s</li>
+<li><strong>run_d24154dbae48</strong> exit=0 elapsed=0.4467s</li>
+<li><strong>run_d56d9f44cc0d</strong> exit=0 elapsed=0.4533s</li></ul>
       </section>
       <section class="panel">
         <h2>Recent Claims</h2>
-        <ul><li><a href="../knowledge/claims/claim_52360eca204a.md">claim_52360eca204a</a>: For a 1024 KB working set and 128-byte stride, the CUDA memory probe reported 164.220883 GB/s estimated bandwidth with an average elapsed time of 2.494202 ms across 5 timed launches.</li></ul>
+        <ul><li><a href="../knowledge/claims/claim_c676d8a7c885.md">claim_c676d8a7c885</a>: For the tested single-GPU configuration, a 2048 KB working set with 128-byte stride produced an estimated 147.73436 GB/s in the CUDA memory probe over 3 timed launches.</li>
+<li><a href="../knowledge/claims/claim_2ba9ae0d5738.md">claim_2ba9ae0d5738</a>: For a 2048 KB working set and 4-byte stride under the specified CUDA probe configuration, the measurement yielded an estimated 334.954323 GB/s averaged over 3 timed launches.</li>
+<li><a href="../knowledge/claims/claim_a670c2343b42.md">claim_a670c2343b42</a>: For working set 256 KB and stride 128 bytes, the CUDA memory probe measured 187.236694 GB/s over 3 timed launches.</li>
+<li><a href="../knowledge/claims/claim_c4657b0b5cce.md">claim_c4657b0b5cce</a>: For working set 256 KB and stride 4 bytes, the CUDA memory probe measured an estimated 357.310682 GB/s with average elapsed time 2.292683 ms over 3 timed launches; this supports the missing control-cell measurement itself, but not by itself a claim about how much higher it is than the 256 KB, 128-byte-stride case.</li>
+<li><a href="../knowledge/claims/claim_838cc3215edd.md">claim_838cc3215edd</a>: For working set 1024 KB and stride 128 bytes, the CUDA memory probe measured an estimated 161.603575 GB/s over 3 timed launches, with average elapsed time 5.069195 ms under the specified fixed launch configuration.</li></ul>
       </section>
       <section class="panel">
         <h2>Next Workflow Proposals</h2>
-        <ul><li>Run one paired control spec next in the same `cuda_memory_hierarchy_probe` family, keeping launch geometry, iterations, repeat count, seed, and budget fixed while changing only the access pattern to the probe&#x27;s smaller or more contiguous baseline. Then execute the normal stages unchanged and add a comparison-oriented analysis/verification pass that references both spec IDs and both run artifacts without mutating prior records.</li></ul>
+        <ul><li>Run one rollbackable follow-up spec in the existing `cuda_memory_hierarchy_probe` handler with the same launch shape and deterministic controls as `spec_3626106571cf`, `spec_ea7294e5fd1a`, and `spec_d89a9f30c9b4`, but set `working_set_kb=256` and `stride_bytes=4`. Analyze it only as the missing matched control for the current 2x2 design: if the 4-byte stride remains substantially faster than 128-byte stride at 256 KB and the 256 KB, 4-byte result is similar to or above the 2048 KB, 4-byte control, record a narrow claim that hostile-stride penalty persists even when the working set is reduced; if not, keep conclusions limited to observed configuration-specific bandwidth differences. Preserve append-only history, keep cache-level attribution out of curated knowledge, and treat this as a matrix-completion step rather than a new benchmark family.</li>
+<li>Run one rollbackable analysis-only step in `workflow_v1` that consumes the four accepted, verified cells in the completed 2x2 matrix (`working_set_kb` in {2048, 256}, `stride_bytes` in {128, 4}) and produces a matrix-level comparison artifact. Require the analyzer to compute only matched ratios/deltas already supported by accepted evidence: stride effect at 2048 KB, stride effect at 256 KB, working-set effect at 128-byte stride, and working-set effect at 4-byte stride. Permit a narrow claim only if it stays descriptive and tied to this probe family, for example that 4-byte stride measured substantially higher bandwidth than 128-byte stride at both tested working-set sizes under identical launch parameters; keep cache-level or causal attribution out of curated knowledge unless later evidence is added. Preserve append-only history, keep benchmark family and single-GPU scope unchanged, and route any resulting matrix-level claim through the normal verification stage before curation.</li>
+<li>Run one rollbackable `workflow_v1` benchmark step for `cuda_memory_hierarchy_probe` at `working_set_kb=1024` and `stride_bytes=4`, keeping the existing fixed controls unchanged (`blocks=80`, `threads_per_block=128`, `iterations=20000`, `repeat_count=3`, `seed=7`, `sleep_ms=10`, single GPU, 120-second budget). Treat the output first as a per-configuration claim only; if and only if that claim also receives an accepted independent rerun, allow the analyzer to compute descriptive stride ratios/deltas for the three matched rows `{256,1024,2048} KB` and prepare a reviewable matrix artifact. Keep any resulting language strictly observational and probe-specific, with no cache-level or causal attribution, and preserve the normal append-only history, verification, and human-review gates before curation.</li></ul>
       </section>
     </main>
   </body>

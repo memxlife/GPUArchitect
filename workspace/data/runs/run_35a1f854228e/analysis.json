@@ -1,0 +1,48 @@
+{
+  "agent_backend": "codex_sdk",
+  "claim": {
+    "confidence": "medium",
+    "counterevidence": [
+      "This payload does not include the accepted 256 KB, 128-byte-stride bandwidth value, so the relative claim in the question cannot be checked directly here.",
+      "The result is based on one benchmark run with 3 timed launches rather than multiple independent runs."
+    ],
+    "created_at": "2026-03-31T13:50:42.961143+00:00",
+    "id": "claim_c4657b0b5cce",
+    "observation_id": "observation_63d448bb6c19",
+    "provenance_paths": [
+      "/home/memx/dy/gpu-vibe/workspace/data/runs/run_35a1f854228e/stdout.json",
+      "/home/memx/dy/gpu-vibe/workspace/data/runs/run_35a1f854228e/spec.json"
+    ],
+    "question_id": "question_71b37e87a343",
+    "spec_id": "spec_b4d5289492f4",
+    "statement": "For working set 256 KB and stride 4 bytes, the CUDA memory probe measured an estimated 357.310682 GB/s with average elapsed time 2.292683 ms over 3 timed launches; this supports the missing control-cell measurement itself, but not by itself a claim about how much higher it is than the 256 KB, 128-byte-stride case.",
+    "status": "candidate",
+    "support_summary": "Raw output reports a successful `cuda_memory_hierarchy_probe` at 256 KB working set, 4-byte stride, 80 blocks, 128 threads per block, and 20,000 iterations, with checksum 10589503488 and estimated bandwidth 357.310682 GB/s. The evidence is internally consistent for this single cell, but the hostile-stride comparison value is absent from the provided payload."
+  },
+  "observation": {
+    "created_at": "2026-03-31T13:50:34.242434+00:00",
+    "evidence_paths": [
+      "/home/memx/dy/gpu-vibe/workspace/data/runs/run_35a1f854228e/stdout.json",
+      "/home/memx/dy/gpu-vibe/workspace/data/runs/run_35a1f854228e/spec.json"
+    ],
+    "id": "observation_63d448bb6c19",
+    "metrics": {
+      "avg_elapsed_ms": 2.292683,
+      "blocks": 80,
+      "estimated_bandwidth_gb_s": 357.310682,
+      "repeat_count": 3,
+      "stride_bytes": 4,
+      "threads_per_block": 128,
+      "working_set_kb": 256
+    },
+    "parser_version": "v1",
+    "run_id": "run_35a1f854228e",
+    "spec_id": "spec_b4d5289492f4"
+  },
+  "thread_id": "019d4429-0d83-7632-bdf5-a795edd0143e",
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 8523,
+    "output_tokens": 397
+  }
+}

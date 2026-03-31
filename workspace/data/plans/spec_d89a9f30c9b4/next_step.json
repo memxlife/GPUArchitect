@@ -1,0 +1,49 @@
+{
+  "backend": "codex_sdk",
+  "proposal": {
+    "approval_state": "proposed",
+    "bottleneck": "The evidence now covers three cells of a 2x2 comparison (`working_set_kb` in {2048, 256} and `stride_bytes` in {128, 4}), but the 256 KB, 4-byte-stride control is still missing, so the workflow cannot yet distinguish a pure working-set effect from a stride-by-capacity interaction under matched launch parameters.",
+    "continue_recommended": true,
+    "created_at": "2026-03-31T13:50:22.863476+00:00",
+    "expected_gain": "One bounded follow-up would complete the minimal comparison matrix, making the next analysis materially stronger: reviewers could compare stride effects at both working-set sizes and compare working-set effects at both strides without changing benchmark family, controls, or workflow stages.",
+    "id": "workflow_d7ed776112fe",
+    "proposal": "Run one rollbackable follow-up spec in the existing `cuda_memory_hierarchy_probe` handler with the same launch shape and deterministic controls as `spec_3626106571cf`, `spec_ea7294e5fd1a`, and `spec_d89a9f30c9b4`, but set `working_set_kb=256` and `stride_bytes=4`. Analyze it only as the missing matched control for the current 2x2 design: if the 4-byte stride remains substantially faster than 128-byte stride at 256 KB and the 256 KB, 4-byte result is similar to or above the 2048 KB, 4-byte control, record a narrow claim that hostile-stride penalty persists even when the working set is reduced; if not, keep conclusions limited to observed configuration-specific bandwidth differences. Preserve append-only history, keep cache-level attribution out of curated knowledge, and treat this as a matrix-completion step rather than a new benchmark family.",
+    "proposed_profile_updates": [
+      {
+        "context_sections": [
+          "question",
+          "spec",
+          "claim",
+          "verification"
+        ],
+        "instruction_note": "When a proposal is extending a controlled parameter matrix, require the spec generator to name the matrix axes, list the already-measured cells by spec id, and identify the single missing cell the next run will fill.",
+        "reason": "This makes experimental coverage explicit for human review and reduces redundant follow-up specs.",
+        "role": "spec_generator",
+        "sandbox_mode": "read-only",
+        "web_search_enabled": false
+      },
+      {
+        "context_sections": [
+          "spec",
+          "claim",
+          "verification"
+        ],
+        "instruction_note": "For memory-hierarchy analysis, permit interaction language only after both values of each declared axis have at least one matched comparison; otherwise restrict wording to single-axis or configuration-specific observations.",
+        "reason": "This preserves rigor and prevents over-interpreting partial factorial evidence.",
+        "role": "analyzer",
+        "sandbox_mode": "read-only",
+        "web_search_enabled": false
+      }
+    ],
+    "risk": "The added 256 KB, 4-byte result may still be noisy or may show little separation, which would complete the matrix structurally but still leave the mechanistic interpretation weak.",
+    "rollback_condition": "If the 256 KB, 4-byte-stride run cannot be executed deterministically within the 120-second budget, produces incompatible metadata, or fails independent rerun stability, keep the current accepted claims as-is and do not elevate the analysis beyond the existing partial matrix.",
+    "stop_reason": null,
+    "target_workflow_version": "workflow_v1"
+  },
+  "thread_id": "019d4428-9006-7760-b062-ab866ed0b868",
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 11921,
+    "output_tokens": 985
+  }
+}

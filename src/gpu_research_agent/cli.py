@@ -9,6 +9,13 @@ import yaml
 
 from .config import DEFAULT_MODEL, DEFAULT_ROUND_BUDGET_SECONDS, WorkspaceLayout
 from .loop import run_research_round
+from .schemas import new_id
+from .session import (
+    append_operator_directive,
+    build_continuation_context,
+    load_session_state,
+    save_session_state,
+)
 from .site import rebuild_site
 from .store import AppendOnlyStore
 from .workflow import load_workflow_definition
@@ -26,7 +33,14 @@ def parse_args() -> argparse.Namespace:
     subparsers.add_parser("init", help="Initialize workspace directories")
 
     run_parser = subparsers.add_parser("run-round", help="Run one research round")
-    run_parser.add_argument("--question", required=True, help="Research question")
+    run_parser.add_argument("--question", help="Research question")
+    run_parser.add_argument("--directive", help="Operator continuation instruction")
+
+    loop_parser = subparsers.add_parser("run-loop", help="Run multiple research rounds")
+    loop_parser.add_argument("--question", help="Initial research question")
+    loop_parser.add_argument("--directive", help="Operator continuation instruction")
+    loop_parser.add_argument("--rounds", type=int, help="Number of rounds to run")
+    loop_parser.add_argument("--auto", action="store_true", help="Run until the workflow recommends stopping")
 
     verify_parser = subparsers.add_parser("verify-claim", help="Show verification record for a claim")
     verify_parser.add_argument("--claim-id", required=True, help="Claim identifier")
@@ -54,29 +68,124 @@ def command_init(layout: WorkspaceLayout) -> None:
             ),
             encoding="utf-8",
         )
+    state = load_session_state(layout)
+    if state.get("session_id") is None:
+        save_session_state(
+            layout,
+            {
+                "session_id": new_id("session"),
+                "status": "idle",
+                "rounds_completed": 0,
+                "mode": None,
+            },
+        )
     _log(f"initialized root={layout.root}")
     print(f"Initialized workspace at {layout.root}")
 
 
-def command_run_round(layout: WorkspaceLayout, question: str) -> None:
-    _log(f"run_round question={question}")
-    result = run_research_round(layout, question)
+def _run_loop(
+    layout: WorkspaceLayout,
+    *,
+    question: str | None,
+    directive: str | None,
+    rounds: int | None,
+    auto: bool,
+) -> list[dict[str, str]]:
+    store = AppendOnlyStore(layout)
+    store.init_workspace()
+    state = load_session_state(layout)
+    if state.get("session_id") is None:
+        state["session_id"] = new_id("session")
+    state["status"] = "running"
+    state["mode"] = "auto" if auto else ("finite" if rounds not in (None, 1) else "manual")
+    state["target_rounds"] = rounds
+    save_session_state(layout, state)
+
+    if directive:
+        append_operator_directive(
+            store,
+            session_id=state["session_id"],
+            directive=directive,
+            round_index=state.get("rounds_completed"),
+        )
+
+    outputs: list[dict[str, str]] = []
+    initial_question = question
+    round_counter = 0
+
+    try:
+        while True:
+            if rounds is not None and round_counter >= rounds:
+                break
+            _log(f"loop_round index={round_counter + 1} mode={state['mode']}")
+            result = run_research_round(
+                layout,
+                initial_question if round_counter == 0 else None,
+                operator_directive=directive if round_counter == 0 else None,
+            )
+            round_counter += 1
+            state["rounds_completed"] = int(state.get("rounds_completed", 0)) + 1
+            state["last_question_id"] = result.question.id
+            state["last_claim_id"] = result.claim.id
+            state["last_workflow_proposal_id"] = result.next_step.id
+            save_session_state(layout, state)
+            outputs.append(
+                {
+                    "question_id": result.question.id,
+                    "spec_id": result.spec.id,
+                    "run_id": result.run.id,
+                    "observation_id": result.observation.id,
+                    "claim_id": result.claim.id,
+                    "verification_id": result.verification.id,
+                    "workflow_proposal_id": result.next_step.id,
+                    "claim_status": result.claim.status,
+                }
+            )
+            if not auto and rounds in (None, 1):
+                break
+            if auto and not result.next_step.continue_recommended:
+                state["status"] = "completed"
+                state["stop_reason"] = result.next_step.stop_reason or "workflow_recommended_stop"
+                save_session_state(layout, state)
+                _log(f"loop_stop reason={state['stop_reason']}")
+                break
+        else:
+            state["status"] = "completed"
+            save_session_state(layout, state)
+    except KeyboardInterrupt:
+        state["status"] = "paused"
+        save_session_state(layout, state)
+        _log("loop_interrupted status=paused")
+        raise
+
+    if state.get("status") == "running":
+        state["status"] = "idle" if not auto else "completed"
+        save_session_state(layout, state)
+    return outputs
+
+
+def command_run_round(layout: WorkspaceLayout, question: str | None, directive: str | None) -> None:
+    _log(f"run_round question={question or '<continue>'}")
+    result_rows = _run_loop(layout, question=question, directive=directive, rounds=1, auto=False)
+    result = result_rows[-1]
     print(
         json.dumps(
-            {
-                "question_id": result.question.id,
-                "spec_id": result.spec.id,
-                "run_id": result.run.id,
-                "observation_id": result.observation.id,
-                "claim_id": result.claim.id,
-                "verification_id": result.verification.id,
-                "claim_status": result.claim.status,
-                "workflow_proposal_id": result.next_step.id,
-            },
+            result,
             indent=2,
             sort_keys=True,
         )
     )
+
+
+def command_run_loop(layout: WorkspaceLayout, question: str | None, directive: str | None, rounds: int | None, auto: bool) -> None:
+    if auto and rounds is not None:
+        raise SystemExit("Use either --auto or --rounds, not both.")
+    effective_rounds = None if auto else (rounds or 1)
+    _log(
+        f"run_loop question={question or '<continue>'} rounds={effective_rounds if effective_rounds is not None else 'auto'}"
+    )
+    results = _run_loop(layout, question=question, directive=directive, rounds=effective_rounds, auto=auto)
+    print(json.dumps({"rounds": results}, indent=2, sort_keys=True))
 
 
 def command_verify_claim(layout: WorkspaceLayout, claim_id: str) -> None:
@@ -106,6 +215,7 @@ def command_status(layout: WorkspaceLayout) -> None:
     runs = store.load_jsonl("runs")
     claims = store.load_jsonl("claims")
     verifications = store.load_jsonl("verifications")
+    session_state = load_session_state(layout)
     latest_claim = claims[-1]["id"] if claims else None
     print(
         json.dumps(
@@ -117,6 +227,7 @@ def command_status(layout: WorkspaceLayout) -> None:
                 "verifications": len(verifications),
                 "latest_claim": latest_claim,
                 "workflow_version": workflow.version,
+                "session_state": session_state,
                 "agent_runtime_dir": str(layout.agent_runtime_dir),
                 "site_index": str(layout.site_dir / "index.html"),
                 "knowledge_index": str(layout.knowledge_dir / "index.md"),
@@ -136,7 +247,10 @@ def main() -> None:
         command_init(layout)
         return
     if args.command == "run-round":
-        command_run_round(layout, args.question)
+        command_run_round(layout, args.question, args.directive)
+        return
+    if args.command == "run-loop":
+        command_run_loop(layout, args.question, args.directive, args.rounds, args.auto)
         return
     if args.command == "verify-claim":
         command_verify_claim(layout, args.claim_id)

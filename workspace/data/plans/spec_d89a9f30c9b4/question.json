@@ -1,0 +1,8 @@
+{
+  "created_at": "2026-03-31T13:49:46.885738+00:00",
+  "id": "question_9b94c5b7f49f",
+  "priority": 1,
+  "rationale": "This follow-up uses the real CUDA memory-hierarchy probe and changes exactly one axis, `working_set_kb`, while holding constant the prior hostile-stride configuration from `spec_3626106571cf` (`stride_bytes=128`, `blocks=80`, `threads_per_block=128`, `iterations=20000`). It is bounded, single-GPU, deterministic, and fits the 120-second budget while providing a falsifiable capacity-sensitive comparison.",
+  "scope": "single_gpu_microbenchmark",
+  "topic": "Does reducing the working set to 256 KB, while holding the 128-byte stride and launch parameters fixed, materially raise effective bandwidth relative to the accepted 2048 KB hostile-stride CUDA probe?"
+}

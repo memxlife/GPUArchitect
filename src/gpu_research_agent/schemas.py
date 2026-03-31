@@ -181,6 +181,8 @@ class WorkflowProposal:
     approval_state: str = "proposed"
     target_workflow_version: str | None = None
     proposed_profile_updates: list[dict[str, Any]] = field(default_factory=list)
+    continue_recommended: bool = True
+    stop_reason: str | None = None
     id: str = field(default_factory=lambda: new_id("workflow"))
     created_at: str = field(default_factory=utc_now)
 

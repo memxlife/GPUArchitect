@@ -1,0 +1,30 @@
+{
+  "backend": "codex_sdk",
+  "output": {
+    "benchmark_type": "cuda_memory_hierarchy_probe",
+    "blocks": 80,
+    "executor_ref": "python_module:gpu_research_agent.benchmarks.cuda_memory_hierarchy_probe",
+    "expected_outputs": [
+      "stdout.json",
+      "compile.log",
+      "analysis.json"
+    ],
+    "hypothesis": "For a fixed single-GPU launch configuration, a 2048 KB working set with 128-byte strided global-memory accesses will produce lower effective bandwidth than a cache-friendly regime, indicating sensitivity to memory-hierarchy locality under otherwise identical controls.",
+    "iterations": 20000,
+    "rationale": "The research question directly matches the bounded CUDA memory-hierarchy probe family. This configuration stays within the single-GPU scope, uses fixed launch parameters and seed for determinism, and is aggressive enough on working-set size and stride to make the locality hypothesis falsifiable within the round budget.",
+    "repeat_count": 3,
+    "scope": "single_gpu_microbenchmark",
+    "seed": 7,
+    "selected_question": "explore memory hierarchy effects with strided global memory access",
+    "sleep_ms": 10,
+    "stride_bytes": 128,
+    "threads_per_block": 128,
+    "working_set_kb": 2048
+  },
+  "thread_id": "019d4426-bb02-7870-811f-812271332641",
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 13066,
+    "output_tokens": 716
+  }
+}

@@ -71,6 +71,7 @@ class CodexClient:
         fallback_output: dict[str, Any],
         sandbox_mode: str = "read-only",
         web_search_enabled: bool = False,
+        stream_mode: str = "streamed",
     ) -> CodexInvocationResult:
         auth_env = _resolve_auth_env()
         if not _has_agent_runtime(self.layout):
@@ -110,6 +111,7 @@ class CodexClient:
             "sandbox_mode": sandbox_mode,
             "web_search_enabled": web_search_enabled,
             "skip_git_repo_check": True,
+            "stream_mode": stream_mode,
         }
 
         with tempfile.NamedTemporaryFile("w", encoding="utf-8", suffix=".json", delete=False) as handle:

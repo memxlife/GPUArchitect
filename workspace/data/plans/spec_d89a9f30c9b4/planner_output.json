@@ -1,0 +1,30 @@
+{
+  "backend": "codex_sdk",
+  "output": {
+    "benchmark_type": "cuda_memory_hierarchy_probe",
+    "blocks": 80,
+    "executor_ref": "python_module:gpu_research_agent.benchmarks.cuda_memory_hierarchy_probe",
+    "expected_outputs": [
+      "stdout.json",
+      "compile.log",
+      "analysis.json"
+    ],
+    "hypothesis": "Holding launch shape, iterations, and stride constant at the accepted hostile-stride setting, reducing the working set from 2048 KB to 256 KB will increase estimated bandwidth; if bandwidth does not increase materially versus the prior 2048 KB, 128-byte-stride result, the capacity/locality explanation is weakened.",
+    "iterations": 20000,
+    "rationale": "This follow-up uses the real CUDA memory-hierarchy probe and changes exactly one axis, `working_set_kb`, while holding constant the prior hostile-stride configuration from `spec_3626106571cf` (`stride_bytes=128`, `blocks=80`, `threads_per_block=128`, `iterations=20000`). It is bounded, single-GPU, deterministic, and fits the 120-second budget while providing a falsifiable capacity-sensitive comparison.",
+    "repeat_count": 3,
+    "scope": "single_gpu_microbenchmark",
+    "seed": 7,
+    "selected_question": "Does reducing the working set to 256 KB, while holding the 128-byte stride and launch parameters fixed, materially raise effective bandwidth relative to the accepted 2048 KB hostile-stride CUDA probe?",
+    "sleep_ms": 10,
+    "stride_bytes": 128,
+    "threads_per_block": 128,
+    "working_set_kb": 256
+  },
+  "thread_id": "019d4428-2e50-7a61-afaa-15354815d45d",
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 15744,
+    "output_tokens": 471
+  }
+}

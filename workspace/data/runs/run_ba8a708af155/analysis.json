@@ -1,0 +1,48 @@
+{
+  "agent_backend": "codex_sdk",
+  "claim": {
+    "confidence": "medium",
+    "counterevidence": [
+      "No accepted 2048 KB baseline result is included here, so this observation alone cannot establish whether bandwidth increased materially relative to that prior probe.",
+      "The estimate is based on one successful run with 3 timed launches, which limits evidence about run-to-run variance."
+    ],
+    "created_at": "2026-03-31T13:49:56.142215+00:00",
+    "id": "claim_a670c2343b42",
+    "observation_id": "observation_304a01c11654",
+    "provenance_paths": [
+      "/home/memx/dy/gpu-vibe/workspace/data/runs/run_ba8a708af155/stdout.json",
+      "/home/memx/dy/gpu-vibe/workspace/data/runs/run_ba8a708af155/spec.json"
+    ],
+    "question_id": "question_9b94c5b7f49f",
+    "spec_id": "spec_d89a9f30c9b4",
+    "statement": "For working set 256 KB and stride 128 bytes, the CUDA memory probe measured 187.236694 GB/s over 3 timed launches.",
+    "status": "candidate",
+    "support_summary": "Raw evidence: the bounded `cuda_memory_hierarchy_probe` ran with working_set_kb=256, stride_bytes=128, blocks=80, threads_per_block=128, iterations=20000, and reported avg_elapsed_ms=4.375211, estimated_bandwidth_gb_s=187.236694, checksum=259976658944, repeat_count=3. Interpretation: this is a valid single-point measurement for the reduced working set under the fixed hostile-stride launch shape, but it does not by itself show a material increase versus the prior 2048 KB condition."
+  },
+  "observation": {
+    "created_at": "2026-03-31T13:49:47.324293+00:00",
+    "evidence_paths": [
+      "/home/memx/dy/gpu-vibe/workspace/data/runs/run_ba8a708af155/stdout.json",
+      "/home/memx/dy/gpu-vibe/workspace/data/runs/run_ba8a708af155/spec.json"
+    ],
+    "id": "observation_304a01c11654",
+    "metrics": {
+      "avg_elapsed_ms": 4.375211,
+      "blocks": 80,
+      "estimated_bandwidth_gb_s": 187.236694,
+      "repeat_count": 3,
+      "stride_bytes": 128,
+      "threads_per_block": 128,
+      "working_set_kb": 256
+    },
+    "parser_version": "v1",
+    "run_id": "run_ba8a708af155",
+    "spec_id": "spec_d89a9f30c9b4"
+  },
+  "thread_id": "019d4428-5620-77a2-8b68-12dfdbc4079c",
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 8479,
+    "output_tokens": 353
+  }
+}

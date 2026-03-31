@@ -1,8 +1,0 @@
-{
-  "created_at": "2026-03-31T13:17:43.364085+00:00",
-  "id": "question_f8dbb4ea0ccc",
-  "priority": 1,
-  "rationale": "The research question directly matches the bounded CUDA memory-hierarchy probe family. This configuration stays within the single-GPU budget, uses fixed launch geometry and seed for deterministic control, and selects a stride and working set large enough to plausibly expose hierarchy effects without requiring an unbounded parameter sweep.",
-  "scope": "single_gpu_microbenchmark",
-  "topic": "Explore memory hierarchy effects with strided global memory access"
-}

@@ -1,0 +1,30 @@
+{
+  "backend": "codex_sdk",
+  "output": {
+    "benchmark_type": "cuda_memory_hierarchy_probe",
+    "blocks": 80,
+    "executor_ref": "python_module:gpu_research_agent.benchmarks.cuda_memory_hierarchy_probe",
+    "expected_outputs": [
+      "stdout.json",
+      "compile.log",
+      "analysis.json"
+    ],
+    "hypothesis": "Under the same single-GPU launch configuration and working-set size as spec_3626106571cf, reducing the access stride from 128 bytes to 4 bytes will produce higher effective bandwidth, falsifying the locality explanation if the paired control does not improve over the prior strided result.",
+    "iterations": 20000,
+    "rationale": "This is the bounded follow-up requested by the latest workflow proposal: a matched cache-friendly control run against the accepted 2048 KB, 128-byte-stride measurement. It stays within the real CUDA memory-hierarchy probe family, preserves deterministic controls, uses identical launch parameters for direct comparison, and fits the 120-second round budget.",
+    "repeat_count": 3,
+    "scope": "single_gpu_microbenchmark",
+    "seed": 7,
+    "selected_question": "Run a matched cache-friendly control for the latest 2048 KB strided CUDA memory probe to test whether the observed bandwidth is due to memory-hierarchy locality rather than fixed launch configuration.",
+    "sleep_ms": 10,
+    "stride_bytes": 4,
+    "threads_per_block": 128,
+    "working_set_kb": 2048
+  },
+  "thread_id": "019d4427-783b-7831-a88a-78b64a01cc14",
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 15081,
+    "output_tokens": 646
+  }
+}

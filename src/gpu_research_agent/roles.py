@@ -36,11 +36,18 @@ class Planner:
     codex: CodexClient
     workflow: WorkflowDefinition
 
-    def plan(self, question_text: str) -> tuple[ResearchQuestion, ExperimentSpec]:
-        topic = question_text.strip() or "Investigate synthetic memory probe stability"
+    def plan(
+        self,
+        question_text: str | None,
+        *,
+        continuation_context: dict,
+        operator_directive: str | None,
+    ) -> tuple[ResearchQuestion, ExperimentSpec]:
+        topic = (question_text or "").strip()
         family_registry = load_experiment_families()
         preferred_family = "synthetic_memory_probe" if os.getenv("GPUARCHITECT_FORCE_SYNTHETIC") == "1" else "cuda_memory_hierarchy_probe"
         default_payload = {
+            "selected_question": topic or "Continue the latest GPU research thread with one bounded follow-up experiment.",
             "rationale": "Capture a bounded, reproducible first research question for the vertical slice.",
             "scope": "single_gpu_microbenchmark",
             "hypothesis": (
@@ -64,6 +71,7 @@ class Planner:
             "type": "object",
             "additionalProperties": False,
             "properties": {
+                "selected_question": {"type": "string"},
                 "rationale": {"type": "string"},
                 "scope": {"type": "string"},
                 "hypothesis": {"type": "string"},
@@ -86,6 +94,7 @@ class Planner:
                 "rationale",
                 "scope",
                 "hypothesis",
+                "selected_question",
                 "benchmark_type",
                 "working_set_kb",
                 "stride_bytes",
@@ -107,6 +116,8 @@ class Planner:
                 "planner",
                 {
                     "question": topic,
+                    "operator_directive": operator_directive,
+                    "continuation_context": continuation_context,
                     "experiment_families": families_for_prompt(),
                     "workflow_constraints": workflow_constraints(),
                     "defaults": default_payload,
@@ -116,10 +127,11 @@ class Planner:
             fallback_output=default_payload,
             sandbox_mode=profile.sandbox_mode,
             web_search_enabled=profile.web_search_enabled,
+            stream_mode="turn",
         )
         payload = result.output
         question = ResearchQuestion(
-            topic=topic,
+            topic=str(payload.get("selected_question", topic or default_payload["selected_question"])),
             rationale=str(payload.get("rationale", default_payload["rationale"])),
             scope=str(payload.get("scope", default_payload["scope"])),
         )
@@ -560,6 +572,8 @@ class Curator:
         observation: ObservationRecord,
         claim: ClaimRecord,
         verification: VerificationRecord,
+        *,
+        continuation_context: dict,
     ) -> WorkflowProposal:
         if verification.result == "accepted":
             claim.status = "accepted"
@@ -578,6 +592,8 @@ class Curator:
             "approval_state": "proposed",
             "target_workflow_version": self.workflow.version,
             "proposed_profile_updates": [],
+            "continue_recommended": True,
+            "stop_reason": None,
         }
         profile = self.workflow.profile("next_step")
         agent_result = self.codex.invoke_json(
@@ -590,6 +606,7 @@ class Curator:
                     "spec": to_plain_data(spec),
                     "claim": to_plain_data(claim),
                     "verification": to_plain_data(verification),
+                    "continuation_context": continuation_context,
                     "workflow_constraints": workflow_constraints(),
                     "defaults": default_proposal,
                 },
@@ -605,6 +622,8 @@ class Curator:
                     "rollback_condition": {"type": "string"},
                     "approval_state": {"type": "string"},
                     "target_workflow_version": {"type": ["string", "null"]},
+                    "continue_recommended": {"type": "boolean"},
+                    "stop_reason": {"type": ["string", "null"]},
                     "proposed_profile_updates": {
                         "type": "array",
                         "items": {
@@ -640,6 +659,8 @@ class Curator:
                     "rollback_condition",
                     "approval_state",
                     "target_workflow_version",
+                    "continue_recommended",
+                    "stop_reason",
                     "proposed_profile_updates",
                 ],
             },
@@ -656,6 +677,8 @@ class Curator:
             approval_state=str(agent_result.output["approval_state"]),
             target_workflow_version=agent_result.output.get("target_workflow_version"),
             proposed_profile_updates=list(agent_result.output.get("proposed_profile_updates", [])),
+            continue_recommended=bool(agent_result.output.get("continue_recommended", True)),
+            stop_reason=agent_result.output.get("stop_reason"),
         )
         proposal.validate()
         self.store.write_plan_artifact(

@@ -85,6 +85,7 @@ def workflow_constraints() -> dict[str, Any]:
         "append_only_history_required": True,
         "knowledge_base_separate_from_history": True,
         "max_round_budget_seconds": DEFAULT_ROUND_BUDGET_SECONDS,
+        "human_supervision_required": True,
         "must_preserve_workflow_stages": [
             "select_question",
             "form_hypothesis",

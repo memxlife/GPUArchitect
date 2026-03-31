@@ -51,7 +51,31 @@ gpuarchitect init
 gpuarchitect run-round --question "How does the synthetic memory probe react to larger working sets?"
 ```
 
-5. Inspect outputs:
+Continue from the current workspace state without providing a new question:
+
+```bash
+gpuarchitect run-round
+```
+
+Attach a new operator directive while continuing:
+
+```bash
+gpuarchitect run-round --directive "Continue from the last round, but prefer a larger working set."
+```
+
+5. Run multiple rounds:
+
+```bash
+gpuarchitect run-loop --question "Explore memory hierarchy effects with strided global memory access" --rounds 3
+```
+
+```bash
+gpuarchitect run-loop --auto
+```
+
+`--auto` keeps running until the workflow recommends stopping, or until you interrupt it with `Ctrl-C`. After interruption you can resume in the same workspace with `gpuarchitect run-loop --auto` or `gpuarchitect run-round`.
+
+6. Inspect outputs:
 
 ```bash
 gpuarchitect status
@@ -94,6 +118,8 @@ Agent instructions and input structure are not hardcoded only in Python. The act
 
 Each run snapshots the active workflow into `data/plans/<spec_id>/workflow_snapshot.yaml`. Workflow proposals may include `proposed_profile_updates` so the system can propose changes to agent input structure inside the workflow itself, without auto-applying them.
 
+Planner input also includes continuation context built from prior rounds, so repeated `run-round` or `run-loop` commands in the same workspace can continue the existing research thread without code changes.
+
 ## Knowledge Base vs History
 
 These are intentionally different products:
@@ -103,10 +129,24 @@ These are intentionally different products:
 
 The history is the source of truth. The knowledge base is a derived, human/agent-facing view.
 
+## Multi-Round Operation
+
+The workspace keeps mutable control state in `data/control/session_state.json` and append-only operator directives in `data/records/operator_directives.jsonl`.
+
+- `run-round` executes one round.
+- `run-round` without `--question` continues from the latest workspace context.
+- `run-loop --rounds N` executes a fixed number of rounds.
+- `run-loop --auto` continues until the workflow recommends stopping or a human interrupts it.
+- `Ctrl-C` pauses the loop; the next `run-round` or `run-loop` call resumes from accumulated history and the latest operator directives.
+
 ## Commands
 
 - `gpuarchitect init`
 - `gpuarchitect run-round --question "..."`
+- `gpuarchitect run-round`
+- `gpuarchitect run-round --directive "..."`
+- `gpuarchitect run-loop --question "..." --rounds 3`
+- `gpuarchitect run-loop --auto`
 - `gpuarchitect verify-claim --claim-id <id>`
 - `gpuarchitect rebuild-site`
 - `gpuarchitect status`
@@ -122,10 +162,15 @@ The history is the source of truth. The knowledge base is a derived, human/agent
 
 ## Current Benchmark
 
-The initial vertical slice uses a deterministic synthetic probe so the full research loop works on any machine. The executor and parser are structured so real CUDA microbenchmarks can replace or extend the sample benchmark without changing the core loop.
+The workspace now contains:
+
+- a deterministic synthetic fallback probe
+- one real CUDA-backed experiment family: `cuda_memory_hierarchy_probe`
+
+The family provides bounded execution scaffolding and tunable parameters, while the planner remains free to choose the concrete question and parameterization for each round.
 
 ## Current Limits
 
-- the benchmark path is still synthetic rather than CUDA-backed
+- only one real CUDA family is implemented so far
 - verifier support for external sources is limited to what the Codex role can inspect in one turn
-- there is no daemonized multi-round scheduler yet
+- workflow proposals are recorded but not auto-merged

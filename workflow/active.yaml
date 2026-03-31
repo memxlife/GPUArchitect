@@ -13,11 +13,13 @@ roles:
       is unavailable or unsuitable.
     context_sections:
       - question
+      - operator_directive
+      - continuation_context
       - experiment_families
       - workflow_constraints
       - defaults
     sandbox_mode: read-only
-    web_search_enabled: false
+    web_search_enabled: true
   analyzer:
     instructions: >
       You are the Analyzer in a GPU architecture research loop. Read structured raw evidence
@@ -58,6 +60,7 @@ roles:
       - spec
       - claim
       - verification
+      - continuation_context
       - workflow_constraints
       - defaults
     sandbox_mode: read-only
