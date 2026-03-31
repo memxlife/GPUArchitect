@@ -1,0 +1,5 @@
+default_model: gpt-5.4
+round_budget_seconds: 120
+agent_runtime_dir: /home/memx/dy/gpu-vibe/agent_runtime
+site_entrypoint: /home/memx/dy/gpu-vibe/workspace/site/index.html
+knowledge_index: /home/memx/dy/gpu-vibe/workspace/knowledge/index.md

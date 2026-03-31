@@ -1,0 +1,9 @@
+history_summary:
+  questions: 1
+  specs: 1
+  runs: 2
+  observations: 1
+  verifications: 1
+  workflow_proposals: 1
+note: This summary is derived from append-only records in data/records and raw artifacts
+  in data/plans and data/runs.

@@ -1,0 +1,39 @@
+families:
+  - name: synthetic_memory_probe
+    description: >
+      Deterministic placeholder family used to validate the end-to-end workflow
+      when real CUDA execution is unavailable.
+    template_type: synthetic_python_probe
+    tunable_parameters:
+      working_set_kb: "Integer working-set size in KB."
+      stride_bytes: "Byte stride between accesses."
+      iterations: "Loop iterations per thread."
+      sleep_ms: "Optional host-side sleep to model bounded latency."
+    execution_notes: >
+      Safe fallback only. Useful for validating workflow mechanics, not for real GPU claims.
+    expected_outputs:
+      - stdout.json
+      - analysis.json
+    executor_ref: python_module:gpu_research_agent.benchmarks.synthetic_memory_probe
+  - name: cuda_memory_hierarchy_probe
+    description: >
+      Real CUDA experiment family for memory-hierarchy exploration using a bounded
+      strided global-memory access kernel. The template is fixed, while the agent
+      chooses concrete working-set sizes, strides, block size, and iteration counts.
+    template_type: bounded_cuda_memory_probe
+    tunable_parameters:
+      working_set_kb: "Integer working-set size in KB."
+      stride_bytes: "Stride in bytes for each probe step."
+      iterations: "Loop iterations inside the kernel."
+      threads_per_block: "CUDA threads per block."
+      blocks: "Number of launched blocks."
+      repeat_count: "Number of timed launches."
+    execution_notes: >
+      Use this family when exploring memory hierarchy effects. The template provides
+      safe compilation, execution, and JSON output, but the planner remains free to
+      choose concrete hypotheses and parameter schedules.
+    expected_outputs:
+      - stdout.json
+      - compile.log
+      - analysis.json
+    executor_ref: python_module:gpu_research_agent.benchmarks.cuda_memory_hierarchy_probe
